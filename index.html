@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Habibi Gains · Join the waitlist</title>
+<meta name="description" content="The social fitness app built for the UAE. Join the waitlist for early access.">
+<meta property="og:title" content="Habibi Gains · Coming soon">
+<meta property="og:description" content="The social fitness app built for the UAE. Join the waitlist.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' rx='90' fill='%23000'/%3E%3Cg transform='translate(0 100)' fill='%23F5F5F2'%3E%3Crect x='20' y='62' width='38' height='76' rx='19'/%3E%3Crect x='70' y='30' width='46' height='140' rx='23'/%3E%3Crect x='284' y='30' width='46' height='140' rx='23'/%3E%3Crect x='342' y='62' width='38' height='76' rx='19'/%3E%3Cpath d='M116 92 Q200 152 284 92' fill='none' stroke='%23F5F5F2' stroke-width='34' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+  :root { --bg:#000; --card:#111214; --line:#24272c; --text:#F5F5F2; --muted:#9BA1A6; --faint:#5E6268; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { min-height: 100svh; display: flex; justify-content: center; }
+  main { width: 100%; max-width: 480px; padding: calc(56px + env(safe-area-inset-top)) 22px calc(40px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 28px; }
+  .display { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.04em; }
+  .logo { width: 132px; height: 66px; }
+  .logo .bar { transition: d .9s cubic-bezier(.2,.8,.2,1); }
+  h1 { font-size: clamp(40px, 11vw, 54px); line-height: 1; }
+  h1 span { color: var(--faint); }
+  .sub { color: var(--muted); font-size: 17px; line-height: 1.5; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 13px; color: var(--muted); opacity: 0; transform: translateY(8px); animation: up .6s forwards; }
+  form { display: flex; flex-direction: column; gap: 12px; }
+  label.f { display: flex; flex-direction: column; gap: 7px; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  input[type=text], input[type=email], input[type=tel] { height: 56px; border-radius: 18px; border: 1px solid var(--line); background: var(--card); color: var(--text); padding: 0 18px; font: 500 17px Inter, sans-serif; outline: none; transition: border-color .2s; width: 100%; }
+  input:focus { border-color: var(--text); }
+  .phone { display: flex; gap: 8px; }
+  .phone .cc { flex: none; width: 76px; display: flex; align-items: center; justify-content: center; border-radius: 18px; border: 1px solid var(--line); background: var(--card); font-weight: 600; color: var(--muted); }
+  .consent { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--muted); line-height: 1.45; cursor: pointer; }
+  .consent input { width: 22px; height: 22px; accent-color: #F5F5F2; flex: none; margin-top: 1px; }
+  button { height: 58px; border: 0; border-radius: 999px; background: var(--text); color: #0a0b0d; font: 700 17px 'Space Grotesk', sans-serif; cursor: pointer; transition: transform .15s, opacity .2s; margin-top: 4px; }
+  button:active { transform: scale(.97); }
+  button:disabled { opacity: .5; }
+  .hidden { display: none; }
+  .err { color: #FF7A7A; font-size: 14px; min-height: 1em; }
+  .done { display: none; flex-direction: column; gap: 14px; align-items: flex-start; animation: up .6s both; }
+  .done .big { font-size: 40px; line-height: 1.05; }
+  .tick { width: 64px; height: 64px; border-radius: 32px; background: var(--text); display: grid; place-items: center; }
+  .tick path { stroke-dasharray: 30; stroke-dashoffset: 30; animation: draw .6s .2s forwards; }
+  footer { margin-top: auto; display: flex; justify-content: space-between; color: var(--faint); font-size: 13px; padding-top: 12px; }
+  footer a { color: var(--muted); text-decoration: none; }
+  .ar { font-size: 15px; color: var(--muted); direction: rtl; text-align: left; }
+  .in { opacity: 0; transform: translateY(14px); animation: up .8s cubic-bezier(.2,.8,.2,1) forwards; }
+  @keyframes up { to { opacity: 1; transform: none; } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) { .in, .chip { animation: none; opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<main>
+  <svg class="logo in" viewBox="0 0 400 200" role="img" aria-label="Habibi Gains logo">
+    <g fill="#F5F5F2">
+      <rect x="20" y="62" width="38" height="76" rx="19"/>
+      <rect x="70" y="30" width="46" height="140" rx="23"/>
+      <rect x="284" y="30" width="46" height="140" rx="23"/>
+      <rect x="342" y="62" width="38" height="76" rx="19"/>
+    </g>
+    <path id="smile" class="bar" d="M116 100 Q200 100 284 100" fill="none" stroke="#F5F5F2" stroke-width="34" stroke-linecap="round"/>
+  </svg>
+
+  <div class="in" style="animation-delay:.15s; display:flex; flex-direction:column; gap:16px">
+    <h1 class="display">Habibi Gains.<br><span>Coming soon.</span></h1>
+    <p class="sub">The social fitness app built for the UAE. Food that knows shawarma, science-based targets, Ramadan mode, and free run clubs with badges you can't buy.</p>
+    <p class="ar">تطبيق اللياقة المصمم للإمارات. سجّل للوصول المبكر.</p>
+  </div>
+
+  <div class="chips">
+    <span class="chip" style="animation-delay:.35s">Free core</span>
+    <span class="chip" style="animation-delay:.42s">Smart camera</span>
+    <span class="chip" style="animation-delay:.49s">Ramadan mode</span>
+    <span class="chip" style="animation-delay:.56s">Run clubs</span>
+    <span class="chip" style="animation-delay:.63s">Arabic + English</span>
+  </div>
+
+  <form name="waitlist" class="in" style="animation-delay:.3s" id="wl" novalidate>
+    <p class="hidden"><label>Leave empty: <input name="company"></label></p>
+    <label class="f">Name
+      <input type="text" name="name" autocomplete="name" placeholder="Your name" required>
+    </label>
+    <label class="f">Email
+      <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+    </label>
+    <label class="f">Phone (optional)
+      <div class="phone">
+        <span class="cc">+971</span>
+        <input type="tel" name="phone" autocomplete="tel-national" inputmode="tel" placeholder="50 123 4567">
+      </div>
+    </label>
+    <label class="consent">
+      <input type="checkbox" name="updates" value="yes" checked>
+      <span>Email me when Habibi Gains launches, plus early access and run club invites. Unsubscribe any time.</span>
+    </label>
+    <p class="err" id="err" role="alert"></p>
+    <button type="submit" id="btn">Join the waitlist</button>
+  </form>
+
+  <div class="done" id="done" aria-live="polite">
+    <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#0a0b0d" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <p class="display big">You're on the list, <span id="who">habibi</span>.</p>
+    <p class="sub">We'll email you when it's ready. Follow along for sneak peeks.</p>
+    <p class="ar">أنت في القائمة. بنراسلك أول ما يجهز.</p>
+  </div>
+
+  <footer>
+    <span>Made in Abu Dhabi</span>
+    <a href="https://instagram.com/habibigains.app" rel="noopener">@habibigains.app</a>
+  </footer>
+</main>
+
+<script>
+  // The dumbbell bar bends into a smile.
+  setTimeout(() => document.getElementById('smile').setAttribute('d', 'M116 92 Q200 152 284 92'), 700);
+  // Animate in browsers without CSS `d` transitions.
+  (function () {
+    const p = document.getElementById('smile');
+    if (CSS && CSS.supports && CSS.supports('d', 'path("M0 0")')) return;
+    let t0;
+    const step = (t) => {
+      t0 = t0 || t;
+      const k = Math.min(1, (t - t0) / 900), e = 1 - Math.pow(1 - k, 3);
+      p.setAttribute('d', `M116 ${100 - 8 * e} Q200 ${100 + 52 * e} 284 ${100 - 8 * e}`);
+      if (k < 1) requestAnimationFrame(step);
+    };
+    setTimeout(() => requestAnimationFrame(step), 700);
+  })();
+
+  const SB_URL = 'https://ekeybuzzxyzyuwczqnrz.supabase.co';
+  const SB_KEY = 'sb_publishable_EXuzbg-O8Gc6yGmFSwG73Q_1IKL3HUi';
+  const form = document.getElementById('wl');
+  const err = document.getElementById('err');
+  const btn = document.getElementById('btn');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    err.textContent = '';
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const phone = form.phone.value.replace(/[^\d]/g, '');
+    if (!name) return (err.textContent = 'Please add your name.');
+    if (!/^\S+@\S+\.\S+$/.test(email)) return (err.textContent = 'Please check your email.');
+    if (phone && (phone.length < 8 || phone.length > 10)) return (err.textContent = 'Please check your phone number.');
+    btn.disabled = true;
+    btn.textContent = 'Joining…';
+    if (form.company.value) return; // bot
+    const body = {
+      name: name.slice(0, 80),
+      email: email.toLowerCase(),
+      phone: phone ? '+971' + phone.replace(/^0/, '') : null,
+      email_updates: form.updates.checked,
+      source: new URLSearchParams(location.search).get('ref')?.slice(0, 40) || 'bio',
+    };
+    try {
+      const res = await fetch(SB_URL + '/rest/v1/waitlist', {
+        method: 'POST',
+        headers: { apikey: SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify(body),
+      });
+      // 409 = already on the list, which still counts as success
+      if (!res.ok && res.status !== 409) throw new Error('bad');
+      document.getElementById('who').textContent = name.split(' ')[0];
+      form.style.display = 'none';
+      document.querySelector('.chips').style.display = 'none';
+      document.getElementById('done').style.display = 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch {
+      err.textContent = 'Something went wrong. Please try again.';
+      btn.disabled = false;
+      btn.textContent = 'Join the waitlist';
+    }
+  });
+</script>
+</body>
+</html>
