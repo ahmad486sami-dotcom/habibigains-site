@@ -29,8 +29,15 @@
   input[type=text],input[type=email]{width:100%;background:#000;color:var(--text);border:1px solid #24272C;border-radius:14px;padding:15px;font:16px Inter,sans-serif;outline:none}
   input::placeholder{color:var(--faint)}
   input:focus{border-color:var(--muted)}
-  .check{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:14px;color:var(--muted)}
-  .check input{margin-top:3px;width:18px;height:18px;accent-color:#fff;flex:none}
+  .q{font-size:14px;font-weight:600;margin:22px 0 4px}
+  .qsub{color:var(--muted);font-size:13px;margin:0 0 10px}
+  .opt{display:flex;gap:14px;align-items:flex-start;background:#000;border:1px solid #24272C;border-radius:14px;padding:14px 16px;margin:0 0 10px;cursor:pointer;font-weight:400}
+  .opt input{margin:3px 0 0;width:22px;height:22px;accent-color:#fff;flex:none}
+  .opt b{display:block;font-size:15px;font-weight:600;color:var(--text)}
+  .opt span{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .opt:has(input:checked){border-color:#fff}
+  label.check{display:flex;gap:14px;align-items:center;margin:20px 0 0;padding:6px 0;font-size:14px;font-weight:400;color:var(--muted);cursor:pointer}
+  label.check input{margin:0;width:28px;height:28px;accent-color:#fff;flex:none}
   button{margin-top:22px;width:100%;height:52px;background:#fff;color:#0A0B0D;border:0;border-radius:14px;font:600 16px Inter,sans-serif;cursor:pointer}
   button:disabled{opacity:.5;cursor:default}
   .msg{margin-top:16px;font-size:15px;display:none;border-radius:14px;padding:14px}
@@ -71,18 +78,23 @@
 
   <form class="card" id="f" novalidate>
     <label for="name">Your name</label>
-    <input id="name" type="text" autocomplete="name" maxlength="80" placeholder="Ahmad" required>
+    <input id="name" type="text" autocomplete="name" maxlength="50" placeholder="Ahmad" required>
 
     <label for="email">Apple ID email <span class="hint">(the one you use on your iPhone)</span></label>
     <input id="email" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="you@icloud.com" required>
 
-    <label for="ig">Instagram username <span class="hint">(we DM you the group invite)</span></label>
-    <input id="ig" type="text" autocomplete="off" maxlength="40" placeholder="@yourname" required>
+    <p class="q">How do you want to try it?</p>
+    <p class="qsub">Your choice. Both get the same app, and you can add friends later either way.</p>
+    <label class="opt"><input type="radio" name="mode" value="solo"><div><b>On my own</b><span>Just me. See how the app feels. No group chat.</span></div></label>
+    <label class="opt"><input type="radio" name="mode" value="friends"><div><b>With friends</b><span>Join the early-access group chat on Instagram and test challenges with other testers or your own friends.</span></div></label>
 
-    <div class="check">
+    <label for="ig">Instagram username <span class="hint" id="ighint">(only needed if you pick "With friends", so we can DM you the group invite)</span></label>
+    <input id="ig" type="text" autocomplete="off" maxlength="30" placeholder="@yourname">
+
+    <label class="check" for="ok">
       <input id="ok" type="checkbox">
       <span>I have an iPhone and I'm happy to give feedback.</span>
-    </div>
+    </label>
 
     <input class="hp" id="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
 
@@ -92,8 +104,8 @@
 
   <ol class="steps">
     <li>Send your details here. It takes 20 seconds.</li>
-    <li>We DM you on Instagram and add you to the early-access group chat.</li>
-    <li>You get the TestFlight invite by email. Install TestFlight, open the invite, tap Install.</li>
+    <li>If you picked "With friends", we DM you on Instagram and add you to the early-access group chat.</li>
+    <li>You get your invite by email. Open it on your iPhone and tap Install.</li>
   </ol>
 
   <p class="fine">We only use your email to send the invite and early updates. We never sell it. See the <a href="/privacy">Privacy Policy</a>.</p>
@@ -131,6 +143,7 @@
   var msg = document.getElementById('msg');
 
   function show(kind, text) { msg.className = 'msg ' + kind; msg.textContent = text; }
+  function mode() { var r = f.querySelector('input[name=mode]:checked'); return r ? r.value : ''; }
 
   f.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -140,11 +153,18 @@
     var email = document.getElementById('email').value.trim().toLowerCase();
     var ig = document.getElementById('ig').value.trim().replace(/^@/, '');
     var ok = document.getElementById('ok').checked;
+    var m = mode();
 
     if (name.length < 2) return show('err', 'Please enter your name.');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return show('err', 'Please enter a valid email.');
-    if (!/^[A-Za-z0-9._]{2,30}$/.test(ig)) return show('err', 'Please enter your Instagram username so we can DM you.');
+    if (!m) return show('err', 'Please choose: on my own, or with friends.');
+    if (m === 'friends' && !ig) return show('err', 'Please enter your Instagram username so we can DM you the group invite.');
+    if (ig && !/^[A-Za-z0-9._]{2,30}$/.test(ig)) return show('err', 'That Instagram username does not look right.');
     if (!ok) return show('err', 'Please tick the box to confirm you have an iPhone.');
+
+    // Saved in the name column (max 80 characters): Name (@instagram) · solo | friends
+    var tail = (ig ? ' (@' + ig + ')' : '') + ' · ' + m;
+    var label = name.slice(0, 80 - tail.length) + tail;
 
     btn.disabled = true; btn.textContent = 'Sending…'; msg.className = 'msg';
 
@@ -157,7 +177,7 @@
         'Prefer': 'return=minimal'
       },
       body: JSON.stringify({
-        name: ig ? name + ' (@' + ig + ')' : name,
+        name: label,
         email: email,
         email_updates: true,
         source: 'testflight-early'
@@ -165,7 +185,9 @@
     }).then(function (r) {
       if (r.ok) {
         f.reset();
-        show('ok', "You're in! Watch your Instagram DMs: we'll add you to the early-access group, and the TestFlight invite goes to your email (check spam too).");
+        show('ok', m === 'friends'
+          ? "You're in! Watch your Instagram DMs: we'll add you to the early-access group, and your invite goes to your email (check spam too)."
+          : "You're in! Your invite goes to your email (check spam too). Open it on your iPhone and tap Install.");
         btn.textContent = 'Done';
         loadSpots();
       } else if (r.status === 400 || r.status === 409) {
