@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Early access · Habibi Gains</title>
+<meta name="description" content="Join the first 30 testers of Habibi Gains, the calorie counter built around challenges with your friends.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#000000">
+<style>
+  :root{--bg:#000;--card:#15171B;--card2:#1E2126;--text:#F5F5F2;--muted:#9A9DA4;--faint:#5E626A;--accent:#fff}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font:16px/1.55 Inter,system-ui,-apple-system,sans-serif;margin:0;padding:22px 20px 80px}
+  main{max-width:520px;margin:0 auto}
+  nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:600;font-size:13px;letter-spacing:.2em}
+  .brand svg{width:26px;height:auto}
+  nav .links a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:16px}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);color:var(--muted);border-radius:999px;padding:7px 14px;font-size:13px;margin-bottom:18px}
+  .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  h1{font:700 42px/1.02 "Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;margin:0 0 14px}
+  h1 em{font-style:normal;color:#6B6E75}
+  .lead{color:var(--muted);font-size:17px;margin:0 0 26px}
+  .card{background:var(--card);border-radius:18px;padding:22px}
+  label{display:block;font-size:14px;font-weight:600;margin:16px 0 6px}
+  label:first-of-type{margin-top:0}
+  .hint{font-weight:400;color:var(--muted);font-size:13px}
+  input[type=text],input[type=email]{width:100%;background:#000;color:var(--text);border:1px solid #24272C;border-radius:14px;padding:15px;font:16px Inter,sans-serif;outline:none}
+  input::placeholder{color:var(--faint)}
+  input:focus{border-color:var(--muted)}
+  .check{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:14px;color:var(--muted)}
+  .check input{margin-top:3px;width:18px;height:18px;accent-color:#fff;flex:none}
+  button{margin-top:22px;width:100%;height:52px;background:#fff;color:#0A0B0D;border:0;border-radius:14px;font:600 16px Inter,sans-serif;cursor:pointer}
+  button:disabled{opacity:.5;cursor:default}
+  .msg{margin-top:16px;font-size:15px;display:none;border-radius:14px;padding:14px}
+  .msg.ok{display:block;background:var(--card2);color:var(--text)}
+  .msg.err{display:block;background:#2a1414;color:#ffb4b4}
+  .steps{margin:28px 0 0;padding:0;list-style:none;counter-reset:s}
+  .steps li{counter-increment:s;position:relative;padding-left:40px;margin:14px 0;color:var(--muted);font-size:15px}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:-1px;width:26px;height:26px;border-radius:50%;background:var(--card2);color:var(--text);text-align:center;line-height:26px;font:700 13px "Space Grotesk",sans-serif}
+  .fine{color:var(--faint);font-size:13px;margin-top:24px}
+  .fine a{color:var(--muted)}
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+  .spots{background:var(--card);border-radius:18px;padding:18px 20px;margin:0 0 14px}
+  .spots-top{font-size:15px;color:var(--muted);margin-bottom:12px}
+  .spots-top b{font:700 36px "Space Grotesk",sans-serif;color:var(--text);margin-right:6px;letter-spacing:-.02em}
+  .bar{height:8px;background:var(--card2);border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .6s}
+  .msg.full{display:block;background:#2a1414;color:#ffb4b4;margin:0 0 14px}
+  .msg.full[hidden]{display:none}
+</style>
+</head>
+<body>
+<main>
+  <nav>
+    <a class="brand" href="/"><svg viewBox="0 0 52 24" fill="#F5F5F2" aria-hidden="true"><rect x="0" y="5" width="6" height="14" rx="3"/><rect x="7" y="1" width="6" height="22" rx="3"/><rect x="13" y="9" width="26" height="6" rx="3"/><rect x="39" y="1" width="6" height="22" rx="3"/><rect x="46" y="5" width="6" height="14" rx="3"/></svg>HABIBI GAINS</a>
+    <span class="links"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+  </nav>
+
+  <span class="badge">30 spots · early access</span>
+  <h1>Be one of the first 30 <em>on Habibi Gains.</em></h1>
+  <p class="lead">The calorie counter built around challenges with your friends. Join the first testers on iPhone before the public launch on 30 November.</p>
+
+  <div class="spots" id="spots" hidden>
+    <div class="spots-top"><b id="left">–</b><span id="of"> of 30 spots left</span></div>
+    <div class="bar"><i id="fill"></i></div>
+  </div>
+
+  <div class="msg full" id="full" hidden>All 30 early spots are taken. Public launch is 30 November. Follow us to get the link first.</div>
+
+  <form class="card" id="f" novalidate>
+    <label for="name">Your name</label>
+    <input id="name" type="text" autocomplete="name" maxlength="80" placeholder="Ahmad" required>
+
+    <label for="email">Apple ID email <span class="hint">(the one you use on your iPhone)</span></label>
+    <input id="email" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="you@icloud.com" required>
+
+    <label for="ig">Instagram username <span class="hint">(we DM you the group invite)</span></label>
+    <input id="ig" type="text" autocomplete="off" maxlength="40" placeholder="@yourname" required>
+
+    <div class="check">
+      <input id="ok" type="checkbox">
+      <span>I have an iPhone and I'm happy to give feedback.</span>
+    </div>
+
+    <input class="hp" id="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <button id="go" type="submit">Join early access</button>
+    <div class="msg" id="msg" role="status"></div>
+  </form>
+
+  <ol class="steps">
+    <li>Send your details here. It takes 20 seconds.</li>
+    <li>We DM you on Instagram and add you to the early-access group chat.</li>
+    <li>You get the TestFlight invite by email. Install TestFlight, open the invite, tap Install.</li>
+  </ol>
+
+  <p class="fine">We only use your email to send the invite and early updates. We never sell it. See the <a href="/privacy">Privacy Policy</a>.</p>
+</main>
+
+<script>
+(function () {
+  var URL_ = 'https://ekeybuzzxyzyuwczqnrz.supabase.co/rest/v1/waitlist';
+  var KEY = 'sb_publishable_EXuzbg-O8Gc6yGmFSwG73Q_1IKL3HUi';
+
+  var TOTAL = 30;
+  var API = 'https://ekeybuzzxyzyuwczqnrz.supabase.co/rest/v1/rpc/early_spots_left';
+
+  function loadSpots() {
+    fetch(API, {
+      method: 'POST',
+      headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json' },
+      body: '{}'
+    }).then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (left) {
+        left = Math.max(0, Number(left));
+        document.getElementById('spots').hidden = false;
+        document.getElementById('left').textContent = left;
+        document.getElementById('fill').style.width = ((TOTAL - left) / TOTAL * 100) + '%';
+        if (left === 0) {
+          document.getElementById('full').hidden = false;
+          document.getElementById('f').style.display = 'none';
+        }
+      }).catch(function () { /* counter stays hidden if it cannot load */ });
+  }
+  loadSpots();
+
+  var f = document.getElementById('f');
+  var btn = document.getElementById('go');
+  var msg = document.getElementById('msg');
+
+  function show(kind, text) { msg.className = 'msg ' + kind; msg.textContent = text; }
+
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (document.getElementById('website').value) { show('ok', 'Thanks!'); return; } // bots
+
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim().toLowerCase();
+    var ig = document.getElementById('ig').value.trim().replace(/^@/, '');
+    var ok = document.getElementById('ok').checked;
+
+    if (name.length < 2) return show('err', 'Please enter your name.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return show('err', 'Please enter a valid email.');
+    if (!/^[A-Za-z0-9._]{2,30}$/.test(ig)) return show('err', 'Please enter your Instagram username so we can DM you.');
+    if (!ok) return show('err', 'Please tick the box to confirm you have an iPhone.');
+
+    btn.disabled = true; btn.textContent = 'Sending…'; msg.className = 'msg';
+
+    fetch(URL_, {
+      method: 'POST',
+      headers: {
+        'apikey': KEY,
+        'Authorization': 'Bearer ' + KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        name: ig ? name + ' (@' + ig + ')' : name,
+        email: email,
+        email_updates: true,
+        source: 'testflight-early'
+      })
+    }).then(function (r) {
+      if (r.ok) {
+        f.reset();
+        show('ok', "You're in! Watch your Instagram DMs: we'll add you to the early-access group, and the TestFlight invite goes to your email (check spam too).");
+        btn.textContent = 'Done';
+        loadSpots();
+      } else if (r.status === 400 || r.status === 409) {
+        btn.disabled = false; btn.textContent = 'Join early access';
+        loadSpots();
+        show('err', 'Sorry, the early spots just filled up.');
+      } else {
+        btn.disabled = false; btn.textContent = 'Join early access';
+        show('err', 'Something went wrong. Please try again, or DM us the word EARLY.');
+      }
+    }).catch(function () {
+      btn.disabled = false; btn.textContent = 'Join early access';
+      show('err', 'No connection. Please try again.');
+    });
+  });
+})();
+</script>
+</body>
+</html>
