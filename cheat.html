@@ -22,6 +22,8 @@
   <h1>You're invited to a cheat meal</h1>
   <p>Open the invite in the app to see the day and who is in so far, then accept or pass.</p>
   <a class="btn" id="open" href="#">Open in Habibi Gains</a>
+  <p id="fallback" hidden>Nothing happened? Open Habibi Gains, go to <b>Cheat meals</b> and paste this code:<br><b id="code" style="font-size:22px;letter-spacing:.12em;color:#F5F5F2"></b></p>
+  <p class="alt" id="iab" hidden>Opened inside Instagram or another app? Tap ··· and choose "Open in browser" first.</p>
   <p id="none" hidden>This link is missing its invite code. Ask your friend to send it again.</p>
   <a class="alt" href="https://habibigains.store">Don't have the app yet? Get Habibi Gains</a>
 </main>
@@ -31,6 +33,9 @@
   if (code.length >= 6) {
     var deep = 'habibigains://cheat-join/' + code;
     btn.href = deep;
+    document.getElementById('code').textContent = code;
+    document.getElementById('fallback').hidden = false;
+    if (/Instagram|FBAN|FBAV|Snapchat|TikTok|musical_ly/i.test(navigator.userAgent)) document.getElementById('iab').hidden = false;
     setTimeout(function () { location.href = deep; }, 350); // try to open the app straight away
   } else {
     btn.hidden = true;
