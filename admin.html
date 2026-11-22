@@ -228,7 +228,7 @@
   }
 
   // Today card order.
-  var CARDS = { race: 'Steps race', week: 'Week strip (weekly calorie bank)', cheat: 'Cheat meal days', buddies: "Buddies who haven't logged", meals: 'Meals', workouts: 'Workouts', training: 'Training program', steps: 'Steps', water: 'Water', fasting: 'Fasting timer', weight: 'Weight trend', foryou: 'For you cards' };
+  var CARDS = { race: 'Steps race', week: 'Week strip (weekly calorie bank)', print: 'The hidden print', cheat: 'Cheat meal days', buddies: "Buddies who haven't logged", meals: 'Meals', workouts: 'Workouts', training: 'Training program', steps: 'Steps', water: 'Water', fasting: 'Fasting timer', weight: 'Weight trend', foryou: 'For you cards' };
   async function todayTab(root) {
     var m = await getConfig('today.');
     var saved = Array.isArray(m['today.order']) ? m['today.order'] : [];
