@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Habibi Gains · Control room</title>
+<link rel="icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Private owner page. Every save goes through the server's owner-only check (sa_set_config etc.), so this page alone can't change anything. */
+  :root{--bg:#09090B;--card:#16161B;--card2:#202027;--hair:rgba(255,255,255,.08);--text:#F5F5F2;--muted:#9A9AA6;--faint:#5C5C68;--accent:#00C2FF;--on:#04121A;--good:#3DDC97;--bad:#FF4D6D;--gold:#FFC21A}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  body{padding:max(16px,env(safe-area-inset-top)) 16px 120px}
+  h1,h2,h3,.big{font-family:"Bricolage Grotesque",Inter,sans-serif;font-weight:800;letter-spacing:-.02em}
+  h1{font-size:30px;line-height:1.05}
+  h2{font-size:22px;margin:4px 0 10px}
+  .wrap{max-width:720px;margin:0 auto}
+  .muted{color:var(--muted)} .faint{color:var(--faint)} .small{font-size:13px}
+  .card{background:var(--card);border:1px solid var(--hair);border-radius:22px;padding:16px;margin:12px 0}
+  .row{display:flex;gap:10px;align-items:center} .between{justify-content:space-between} .wrapflex{flex-wrap:wrap}
+  input,textarea,select{width:100%;background:var(--card2);color:var(--text);border:1.5px solid var(--hair);border-radius:14px;padding:12px 14px;font:inherit;font-size:16px;outline:none}
+  input:focus,textarea:focus,select:focus{border-color:var(--accent)}
+  textarea{min-height:70px;resize:vertical}
+  label{display:block;font-size:12px;color:var(--muted);margin:10px 0 6px;letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+  button{font:inherit;cursor:pointer;border:0}
+  .btn{background:var(--accent);color:var(--on);font-weight:700;border-radius:16px;padding:12px 18px;box-shadow:0 4px 0 rgba(0,0,0,.45);transition:transform .12s cubic-bezier(.22,1,.36,1),box-shadow .12s}
+  .btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.45)}
+  .btn.ghost{background:var(--card2);color:var(--text)} .btn.danger{background:var(--bad);color:#fff} .btn.sm{padding:8px 12px;border-radius:12px;font-size:14px}
+  .tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none;position:sticky;top:0;background:linear-gradient(var(--bg) 80%,transparent);z-index:5}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{white-space:nowrap;background:var(--card);color:var(--text);border:1px solid var(--hair);border-radius:999px;padding:10px 16px;font-weight:600}
+  .tab.on{background:var(--accent);color:var(--on);border-color:var(--accent);box-shadow:0 4px 0 rgba(0,0,0,.45)}
+  .badge{font-size:11px;font-weight:700;border-radius:999px;padding:3px 8px;background:rgba(255,194,26,.16);color:var(--gold);letter-spacing:.04em}
+  .key{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--faint)}
+  .swatch{width:44px;height:44px;border-radius:50%;border:3px solid transparent;cursor:pointer}
+  .swatch.on{border-color:var(--text)}
+  .switch{position:relative;width:52px;height:32px;flex:none}
+  .switch input{display:none}
+  .switch span{position:absolute;inset:0;background:var(--card2);border-radius:999px;transition:background .2s}
+  .switch span:after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;transition:transform .25s cubic-bezier(.22,1,.36,1)}
+  .switch input:checked+span{background:var(--good)} .switch input:checked+span:after{transform:translateX(20px)}
+  .list>div{padding:12px 0;border-top:1px solid var(--hair)} .list>div:first-child{border-top:0}
+  .toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translate(-50%,40px);opacity:0;background:var(--text);color:#000;font-weight:700;border-radius:16px;padding:12px 18px;transition:all .35s cubic-bezier(.22,1,.36,1);z-index:50;max-width:90vw}
+  .toast.show{transform:translate(-50%,0);opacity:1} .toast.err{background:var(--bad);color:#fff}
+  .hero{background:var(--accent);color:var(--on);border-radius:26px;padding:20px;margin:14px 0;box-shadow:0 5px 0 rgba(0,0,0,.45)}
+  .hero p{opacity:.85;margin-top:6px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width:520px){.grid2{grid-template-columns:1fr}}
+  .fade{animation:fade .35s cubic-bezier(.22,1,.36,1)} @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"><p class="muted" style="margin-top:40px">Loading…</p></div>
+<div class="toast" id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function () {
+  var SB = supabase.createClient('https://ekeybuzzxyzyuwczqnrz.supabase.co', 'sb_publishable_EXuzbg-O8Gc6yGmFSwG73Q_1IKL3HUi');
+  var app = document.getElementById('app');
+  var STRINGS = {};
+
+  // ── tiny helpers (textContent only: nothing from the database is ever inserted as HTML) ──
+  function h(tag, attrs, kids) {
+    var el = document.createElement(tag);
+    attrs = attrs || {};
+    Object.keys(attrs).forEach(function (k) {
+      var v = attrs[k];
+      if (k === 'class') el.className = v;
+      else if (k === 'text') el.textContent = v;
+      else if (k.indexOf('on') === 0) el.addEventListener(k.slice(2), v);
+      else if (v === true) el.setAttribute(k, '');
+      else if (v !== false && v != null) el.setAttribute(k, v);
+    });
+    (kids || []).forEach(function (c) { if (c != null) el.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+    return el;
+  }
+  var toastT;
+  function toast(msg, err) {
+    var t = document.getElementById('toast');
+    t.textContent = msg; t.className = 'toast show' + (err ? ' err' : '');
+    clearTimeout(toastT); toastT = setTimeout(function () { t.className = 'toast'; }, 2600);
+  }
+  async function rpc(fn, args) {
+    var r = await SB.rpc(fn, args || {});
+    if (r.error) throw r.error;
+    return r.data;
+  }
+  async function setConfig(key, value) { await rpc('sa_set_config', { p_key: key, p_value: value }); }
+  async function getConfig(prefix) {
+    var r = await SB.from('app_config').select('key,value').like('key', prefix + '%');
+    if (r.error) throw r.error;
+    var m = {}; (r.data || []).forEach(function (x) { m[x.key] = x.value; }); return m;
+  }
+  function safe(fn) { return async function () { try { await fn.apply(this, arguments); } catch (e) { toast((e && e.message) || 'Something failed', true); } }; }
+  function sw(checked, onchange) {
+    var inp = h('input', { type: 'checkbox' }); inp.checked = !!checked; inp.addEventListener('change', function () { onchange(inp.checked, inp); });
+    return h('label', { class: 'switch' }, [inp, h('span')]);
+  }
+
+  // ── sign in ──
+  function loginView(msg) {
+    var email = h('input', { type: 'email', placeholder: 'you@email.com', autocomplete: 'username' });
+    var pass = h('input', { type: 'password', placeholder: 'Password', autocomplete: 'current-password' });
+    var go = h('button', { class: 'btn', style: 'width:100%;margin-top:16px', text: 'Sign in' });
+    go.addEventListener('click', safe(async function () {
+      go.textContent = 'Signing in…';
+      var r = await SB.auth.signInWithPassword({ email: email.value.trim().toLowerCase(), password: pass.value });
+      go.textContent = 'Sign in';
+      if (r.error) throw r.error;
+      start();
+    }));
+    app.replaceChildren(h('div', { class: 'fade' }, [
+      h('h1', { text: 'Control room', style: 'margin-top:40px' }),
+      h('p', { class: 'muted', style: 'margin:8px 0 20px', text: 'Change Habibi Gains live: no app update, no build. Owner only.' }),
+      msg ? h('p', { style: 'color:var(--bad);margin-bottom:12px', text: msg }) : null,
+      h('div', { class: 'card' }, [h('label', { text: 'Email' }), email, h('label', { text: 'Password' }), pass, go,
+        h('p', { class: 'small faint', style: 'margin-top:12px', text: 'Use the email login of your Habibi Gains account. Signed up with Apple or Google? In the app: Settings › My data and account privacy › Account settings › Private info › Add email login.' })]),
+    ]));
+  }
+
+  // ── tabs ──
+  var TABS = [['text', 'App text'], ['look', 'Colour'], ['today', 'Today order'], ['banner', 'Home banner'], ['news', "What's new"], ['switches', 'Switches'], ['push', 'Push']];
+  var current = 'text';
+  function shell() {
+    var bar = h('div', { class: 'tabs' }, TABS.map(function (t) {
+      return h('button', { class: 'tab' + (t[0] === current ? ' on' : ''), text: t[1], onclick: function () { current = t[0]; shell(); } });
+    }));
+    var body = h('div', { class: 'fade' });
+    app.replaceChildren(
+      h('div', { class: 'row between', style: 'margin:6px 0 10px' }, [h('h1', { text: 'Control room' }),
+        h('button', { class: 'btn ghost sm', text: 'Sign out', onclick: safe(async function () { await SB.auth.signOut(); loginView(); }) })]),
+      bar, body);
+    ({ text: textTab, look: lookTab, today: todayTab, banner: bannerTab, news: newsTab, switches: switchesTab, push: pushTab })[current](body);
+  }
+
+  // App text: every line from the app's text file, with its default; an override goes live on every phone.
+  async function textTab(root) {
+    var over = await getConfig('text.');
+    var q = h('input', { placeholder: 'Search text or key… (e.g. "streak")' });
+    var list = h('div', { class: 'list' });
+    var onlyLive = false;
+    var liveBtn = h('button', { class: 'btn ghost sm', text: 'Show changed only' });
+    liveBtn.addEventListener('click', function () { onlyLive = !onlyLive; liveBtn.textContent = onlyLive ? 'Show all' : 'Show changed only'; draw(); });
+    function draw() {
+      var s = q.value.trim().toLowerCase();
+      var keys = Object.keys(STRINGS).filter(function (k) {
+        var o = over['text.' + k]; var live = o && (o.en || o.ar);
+        if (onlyLive && !live) return false;
+        if (!s) return true;
+        var d = STRINGS[k];
+        return k.toLowerCase().indexOf(s) >= 0 || (d.en || '').toLowerCase().indexOf(s) >= 0 || (d.ar || '').indexOf(s) >= 0;
+      }).slice(0, 40);
+      list.replaceChildren.apply(list, keys.map(function (k) {
+        var d = STRINGS[k]; var o = over['text.' + k] || {};
+        var en = h('textarea', { placeholder: d.en }); en.value = o.en || '';
+        var ar = h('textarea', { placeholder: d.ar, dir: 'rtl' }); ar.value = o.ar || '';
+        var live = o.en || o.ar;
+        return h('div', {}, [
+          h('div', { class: 'row between' }, [h('span', { class: 'key', text: k }), live ? h('span', { class: 'badge', text: 'LIVE' }) : null]),
+          h('div', { class: 'grid2', style: 'margin-top:8px' }, [
+            h('div', {}, [h('label', { text: 'English (empty = default)' }), en]),
+            h('div', {}, [h('label', { text: 'Arabic (empty = default)' }), ar])]),
+          h('div', { class: 'row', style: 'margin-top:10px' }, [
+            h('button', { class: 'btn sm', text: 'Save live', onclick: safe(async function () {
+              var v = {}; if (en.value.trim()) v.en = en.value.trim(); if (ar.value.trim()) v.ar = ar.value.trim();
+              // The app fills in words like {n} or {name}: a new text must keep every one of them.
+              [['en', d.en], ['ar', d.ar]].forEach(function (pair) {
+                if (!v[pair[0]]) return;
+                var need = (pair[1] || '').match(/\{[a-zA-Z]+\}/g) || [];
+                var miss = need.filter(function (w) { return v[pair[0]].indexOf(w) < 0; });
+                if (miss.length) throw new Error('Keep ' + miss.join(' ') + ' in the ' + (pair[0] === 'en' ? 'English' : 'Arabic') + ' text');
+              });
+              await setConfig('text.' + k, v); over['text.' + k] = v; toast('Live on every phone ✓'); draw();
+            }) }),
+            live ? h('button', { class: 'btn ghost sm', text: 'Back to default', onclick: safe(async function () {
+              await setConfig('text.' + k, {}); over['text.' + k] = {}; toast('Default text is back ✓'); draw();
+            }) }) : null]),
+        ]);
+      }));
+      if (!keys.length) list.replaceChildren(h('p', { class: 'muted', text: 'Nothing matches.' }));
+    }
+    q.addEventListener('input', draw);
+    root.append(
+      h('div', { class: 'hero' }, [h('h2', { text: 'App text', style: 'margin:0' }), h('p', { text: 'Rewrite any line. Phones pick it up the next time the app is opened. Keep words in {curly brackets} exactly as they are: the app fills them in. Works on build 37 and newer.' })]),
+      h('div', { class: 'card' }, [h('div', { class: 'row' }, [q]), h('div', { class: 'row', style: 'margin-top:10px' }, [liveBtn]), h('div', { style: 'margin-top:8px' }, [list])]));
+    draw();
+  }
+
+  // Default accent colour (only for people who never picked their own).
+  var ACCENTS = [['Violet', '#5B2EFF'], ['White', '#F5F5F2'], ['Gold', '#FFB800'], ['Cyan', '#00C2FF'], ['Red', '#FF1F3D'], ['Orange', '#FF5A00'], ['Lime', '#8CFF00'], ['Pink', '#FF2E9A']];
+  async function lookTab(root) {
+    var m = await getConfig('theme.');
+    var cur = m['theme.default_accent'] || '#5B2EFF';
+    var hex = h('input', { value: cur, maxlength: '7' });
+    var row = h('div', { class: 'row wrapflex', style: 'margin-top:6px' });
+    function draw() {
+      row.replaceChildren.apply(row, ACCENTS.map(function (a) {
+        return h('div', { class: 'swatch' + (a[1].toLowerCase() === hex.value.toLowerCase() ? ' on' : ''), title: a[0], style: 'background:' + a[1], onclick: function () { hex.value = a[1]; draw(); } });
+      }));
+    }
+    hex.addEventListener('input', draw);
+    root.append(
+      h('div', { class: 'hero' }, [h('h2', { text: 'Default colour', style: 'margin:0' }), h('p', { text: 'The accent colour for everyone who never picked their own. People who chose a colour keep theirs. Works on build 37 and newer.' })]),
+      h('div', { class: 'card' }, [row, h('label', { text: 'Or any colour (#RRGGBB)' }), hex,
+        h('button', { class: 'btn', style: 'margin-top:14px', text: 'Save live', onclick: safe(async function () {
+          if (!/^#[0-9a-fA-F]{6}$/.test(hex.value)) throw new Error('Use a colour like #00C2FF');
+          await setConfig('theme.default_accent', hex.value.toUpperCase()); toast('Default colour is live ✓');
+        }) })]));
+    draw();
+  }
+
+  // Today card order.
+  var CARDS = { race: 'Steps race', week: 'Week strip (weekly calorie bank)', cheat: 'Cheat meal days', buddies: "Buddies who haven't logged", meals: 'Meals', workouts: 'Workouts', training: 'Training program', steps: 'Steps', water: 'Water', fasting: 'Fasting timer', weight: 'Weight trend', foryou: 'For you cards' };
+  async function todayTab(root) {
+    var m = await getConfig('today.');
+    var saved = Array.isArray(m['today.order']) ? m['today.order'] : [];
+    var order = saved.filter(function (k) { return CARDS[k]; }).concat(Object.keys(CARDS).filter(function (k) { return saved.indexOf(k) < 0; }));
+    var list = h('div', { class: 'list' });
+    function move(i, d) { var j = i + d; if (j < 0 || j >= order.length) return; var t = order[i]; order[i] = order[j]; order[j] = t; draw(); }
+    function draw() {
+      list.replaceChildren.apply(list, order.map(function (k, i) {
+        return h('div', { class: 'row between' }, [
+          h('div', { class: 'row' }, [h('span', { class: 'big', style: 'width:26px;color:var(--accent)', text: String(i + 1) }), h('span', { text: CARDS[k] })]),
+          h('div', { class: 'row' }, [h('button', { class: 'btn ghost sm', text: '↑', onclick: function () { move(i, -1); } }), h('button', { class: 'btn ghost sm', text: '↓', onclick: function () { move(i, 1); } })])]);
+      }));
+    }
+    root.append(
+      h('div', { class: 'hero' }, [h('h2', { text: 'Today order', style: 'margin:0' }), h('p', { text: 'The order of the cards under the calories card on Today. The header, banner and calories card stay on top. Works on build 37 and newer.' })]),
+      h('div', { class: 'card' }, [list, h('div', { class: 'row', style: 'margin-top:14px' }, [
+        h('button', { class: 'btn', text: 'Save live', onclick: safe(async function () { await setConfig('today.order', order); toast('New order is live ✓'); }) }),
+        h('button', { class: 'btn ghost', text: 'Default order', onclick: safe(async function () { await setConfig('today.order', []); order = Object.keys(CARDS); draw(); toast('Default order is back ✓'); }) })])]));
+    draw();
+  }
+
+  // Home banner (top of Today).
+  var ROUTES = [['', 'No button'], ['/add-food', 'Log food'], ['/(tabs)/food', 'Food tab'], ['/weigh-in', 'Weigh-in'], ['/fasting', 'Fasting'], ['/share', 'Share a story'], ['/streak', 'Streaks'], ['/rank', 'Rank & leaderboard'], ['/achievements', 'Achievements'], ['/workout-new', 'Plan a workout'], ['/cheat', 'Cheat meals'], ['/friends-add', 'Add friends'], ['/widget-settings', 'Widgets'], ['/(tabs)/progress', 'Progress tab'], ['/insights', 'Insights'], ['/settings', 'Settings']];
+  function toLocalInput(iso) { if (!iso) return ''; var d = new Date(iso); var p = function (n) { return String(n).padStart(2, '0'); }; return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + 'T' + p(d.getHours()) + ':' + p(d.getMinutes()); }
+  async function bannerTab(root) {
+    var r = await SB.from('home_banners').select('*').order('created_at', { ascending: false });
+    if (r.error) throw r.error;
+    var title = h('input', { maxlength: '80', placeholder: 'Big line (e.g. Ramadan Kareem 🌙)' });
+    var body = h('textarea', { maxlength: '200', placeholder: 'Small text (optional)' });
+    var cta = h('input', { maxlength: '30', placeholder: 'Button text (optional)' });
+    var route = h('select', {}, ROUTES.map(function (x) { return h('option', { value: x[0], text: x[1] }); }));
+    var ends = h('input', { type: 'datetime-local' });
+    var editing = null;
+    var save = h('button', { class: 'btn', style: 'margin-top:14px', text: 'Publish banner' });
+    save.addEventListener('click', safe(async function () {
+      if (title.value.trim().length < 2) throw new Error('Write the big line first');
+      await rpc('sa_save_banner', { p_id: editing, p_title: title.value.trim(), p_body: body.value.trim(), p_cta_label: route.value ? cta.value.trim() : '', p_cta_route: route.value, p_active: true, p_ends_at: ends.value ? new Date(ends.value).toISOString() : null });
+      toast('Banner is live ✓'); shell();
+    }));
+    var list = h('div', { class: 'list' }, (r.data || []).map(function (b) {
+      return h('div', {}, [
+        h('div', { class: 'row between' }, [h('strong', { text: b.title }), sw(b.active, safe(async function (on) {
+          await rpc('sa_save_banner', { p_id: b.id, p_title: b.title, p_body: b.body || '', p_cta_label: b.cta_label || '', p_cta_route: b.cta_route || '', p_active: on, p_ends_at: b.ends_at });
+          toast(on ? 'Showing ✓' : 'Hidden ✓');
+        }))]),
+        b.body ? h('p', { class: 'muted small', text: b.body }) : null,
+        h('p', { class: 'faint small', text: (b.cta_label ? 'Button: ' + b.cta_label + ' → ' + b.cta_route + ' · ' : '') + (b.ends_at ? 'Ends ' + new Date(b.ends_at).toLocaleString() : 'No end date') }),
+        h('div', { class: 'row', style: 'margin-top:8px' }, [
+          h('button', { class: 'btn ghost sm', text: 'Edit', onclick: function () { editing = b.id; title.value = b.title; body.value = b.body || ''; cta.value = b.cta_label || ''; route.value = b.cta_route || ''; ends.value = toLocalInput(b.ends_at); save.textContent = 'Save changes'; window.scrollTo({ top: 0, behavior: 'smooth' }); } }),
+          h('button', { class: 'btn danger sm', text: 'Delete', onclick: safe(async function () { if (!confirm('Delete this banner?')) return; await rpc('sa_delete_banner', { p_id: b.id }); toast('Deleted ✓'); shell(); }) })])]);
+    }));
+    root.append(
+      h('div', { class: 'hero' }, [h('h2', { text: 'Home banner', style: 'margin:0' }), h('p', { text: 'Shows at the top of Today for everyone, until you hide it or it ends.' })]),
+      h('div', { class: 'card' }, [h('label', { text: 'Big line' }), title, h('label', { text: 'Small text' }), body, h('label', { text: 'Button opens' }), route, h('label', { text: 'Button text' }), cta, h('label', { text: 'Ends (optional)' }), ends, save]),
+      h('h2', { text: 'All banners' }), h('div', { class: 'card' }, [(r.data || []).length ? list : h('p', { class: 'muted', text: 'No banners yet.' })]));
+  }
+
+  // What's new (pop-up after an update).
+  async function newsTab(root) {
+    var r = await SB.from('whats_new').select('*').order('created_at', { ascending: false }).limit(20);
+    if (r.error) throw r.error;
+    var title = h('input', { maxlength: '80', placeholder: 'Title' });
+    var body = h('textarea', { maxlength: '600', placeholder: 'What changed, in plain words' });
+    var credits = h('input', { maxlength: '80', placeholder: 'Small line under it (optional)' });
+    root.append(
+      h('div', { class: 'hero' }, [h('h2', { text: "What's new", style: 'margin:0' }), h('p', { text: 'The card people see once after you ship something. Only the newest one that is on shows.' })]),
+      h('div', { class: 'card' }, [h('label', { text: 'Title' }), title, h('label', { text: 'Text' }), body, h('label', { text: 'Small line (optional)' }), credits,
+        h('button', { class: 'btn', style: 'margin-top:14px', text: 'Publish', onclick: safe(async function () {
+          if (!title.value.trim() || !body.value.trim()) throw new Error('Title and text first');
+          await rpc('sa_save_whats_new', { p_id: null, p_title: title.value.trim(), p_body: body.value.trim(), p_credits: credits.value.trim() || null, p_active: true });
+          toast("What's new is live ✓"); shell();
+        }) })]),
+      h('div', { class: 'card list' }, (r.data || []).map(function (w) {
+        return h('div', { class: 'row between' }, [h('div', {}, [h('strong', { text: w.title }), h('p', { class: 'muted small', text: w.body })]),
+          sw(w.active, safe(async function (on) { await rpc('sa_save_whats_new', { p_id: w.id, p_title: w.title, p_body: w.body, p_credits: w.credits || null, p_active: on }); toast(on ? 'Showing ✓' : 'Hidden ✓'); }))]);
+      })));
+  }
+
+  // Feature + story switches.
+  var FEATURES = [['premium_sales', 'Premium sales (buy buttons)', false], ['ramadan', 'Ramadan mode for everyone', false], ['cheat_meals', 'Cheat meals', true], ['workouts', 'Workout planner', true], ['challenges', 'Challenges', true], ['buddies', 'Accountability buddies', true], ['label_scanner', 'Label scanner', true], ['openfoodfacts', 'Barcode food database', true], ['fatsecret', 'Extra food search', true]];
+  var STORIES = [['week', 'Weekly check-in'], ['day', 'My day'], ['plate', 'Receipt'], ['bank', 'Calorie bank'], ['steps', 'Steps'], ['workout', 'Workout'], ['crew', 'Workout with friends'], ['progress', 'Progress'], ['profile', 'Gym card'], ['polaroid', 'Before / after'], ['cheat', 'Cheat meal'], ['badges', 'Achievements']];
+  async function switchesTab(root) {
+    var f = await getConfig('feature.'); var s = await getConfig('story.');
+    root.append(
+      h('div', { class: 'hero' }, [h('h2', { text: 'Switches', style: 'margin:0' }), h('p', { text: 'Turn features and story designs on or off for everyone, instantly.' })]),
+      h('h2', { text: 'Features' }),
+      h('div', { class: 'card list' }, FEATURES.map(function (x) {
+        var key = 'feature.' + x[0]; var on = key in f ? f[key] !== false : x[2];
+        return h('div', { class: 'row between' }, [h('span', { text: x[1] }), sw(on, safe(async function (v) {
+          if (x[0] === 'premium_sales' && v && !confirm('Turn Premium sales ON? Only do this once subscriptions are approved by Apple.')) { shell(); return; }
+          await setConfig(key, v); toast((v ? 'On' : 'Off') + ' ✓');
+        }))]);
+      })),
+      h('h2', { text: 'Story designs' }),
+      h('div', { class: 'card list' }, STORIES.map(function (x) {
+        var key = 'story.' + x[0]; var c = s[key] || {}; var on = c.on !== false;
+        return h('div', { class: 'row between' }, [h('span', { text: x[1] }), h('div', { class: 'row' }, [
+          h('span', { class: 'small muted', text: 'NEW' }), sw(!!c.new, safe(async function (v) { c.new = v; c.on = c.on !== false; await setConfig(key, c); toast('Saved ✓'); })),
+          h('span', { class: 'small muted', text: 'ON' }), sw(on, safe(async function (v) { c.on = v; c.new = !!c.new; await setConfig(key, c); toast('Saved ✓'); }))])]);
+      })));
+  }
+
+  // Push message to everyone.
+  function pushTab(root) {
+    var title = h('input', { maxlength: '60', placeholder: 'Title (2–60 letters)' });
+    var body = h('textarea', { maxlength: '300', placeholder: 'Message (2–300 letters)' });
+    var aud = h('select', {}, [['all', 'Everyone'], ['free', 'Free users'], ['premium', 'Premium users']].map(function (x) { return h('option', { value: x[0], text: x[1] }); }));
+    root.append(
+      h('div', { class: 'hero' }, [h('h2', { text: 'Push message', style: 'margin:0' }), h('p', { text: 'Lands in everyone’s inbox, and as a notification for people who allowed news and offers. Up to 3 a day.' })]),
+      h('div', { class: 'card' }, [h('label', { text: 'Title' }), title, h('label', { text: 'Message' }), body, h('label', { text: 'Who' }), aud,
+        h('button', { class: 'btn', style: 'margin-top:14px', text: 'Send', onclick: safe(async function () {
+          if (!confirm('Send "' + title.value.trim() + '" to ' + aud.options[aud.selectedIndex].text.toLowerCase() + '?')) return;
+          var n = await rpc('sa_announce', { p_title: title.value.trim(), p_body: body.value.trim(), p_audience: aud.value, p_user: null, p_push: true });
+          toast('Sent to ' + n + ' ✓'); title.value = ''; body.value = '';
+        }) })]));
+  }
+
+  async function start() {
+    var s = await SB.auth.getSession();
+    if (!s.data.session) return loginView();
+    var ok = false; try { ok = await rpc('is_super'); } catch (e) { ok = false; }
+    if (!ok) { await SB.auth.signOut(); return loginView('This account is not the owner.'); }
+    try { STRINGS = await (await fetch('/admin-strings.json', { cache: 'no-store' })).json(); } catch (e) { STRINGS = {}; }
+    shell();
+  }
+  start().catch(function () { loginView(); });
+})();
+</script>
+</body>
+</html>
