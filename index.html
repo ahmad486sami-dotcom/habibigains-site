@@ -2,248 +2,340 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Habibi Gains – Calorie and gym tracker made for how the Gulf eats</title>
-<meta name="description" content="Log machboos, karak and shawarma in seconds, plan cheat meals and workouts with friends, keep streaks going and see where your calories really go. Coming to iPhone on 30 November.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Habibi Gains – the calorie and gym tracker made for how the Gulf eats</title>
+<meta name="description" content="Free on the App Store. Log machboos, karak and shawarma in seconds, plan cheat meals and workouts with friends and keep your streak. Arabic and English.">
 <link rel="canonical" href="https://habibigains.store/">
 <meta property="og:title" content="Habibi Gains">
-<meta property="og:description" content="The calorie and gym tracker made for how the Gulf eats.">
+<meta property="og:description" content="The calorie and gym tracker made for how the Gulf eats. Free on the App Store.">
 <meta property="og:url" content="https://habibigains.store/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://habibigains.store/logo.png">
 <meta name="theme-color" content="#000000">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=Readex+Pro:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="icon" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/logo.png">
-<link rel="stylesheet" href="/site.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"MobileApplication","name":"Habibi Gains","operatingSystem":"iOS","applicationCategory":"HealthApplication","url":"https://habibigains.store/","image":"https://habibigains.store/logo.png","inLanguage":["en","ar"],"offers":{"@type":"Offer","price":"0","priceCurrency":"AED"},"sameAs":["https://www.instagram.com/habibigains.app/","https://www.tiktok.com/@habibigains.app"]}
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Readex+Pro:wght@300;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#000;--paper:#F5F5F2;--mute:#8E9297;--line:#1E2023;--raise:#0E0F11;--gold:#D6B46A;--gold-hi:#F0D9A6;--display:"Space Grotesk",system-ui,sans-serif;--sans:"Inter",system-ui,sans-serif;--ar:"Readex Pro",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--ink);scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--ink);color:var(--paper);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:6px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+.d{font-family:var(--display);letter-spacing:-.035em;line-height:.92;font-weight:700}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:12px;font:700 18px var(--display);letter-spacing:-.01em}
+.mark{width:34px;height:34px;border-radius:9px;background:#000;border:1px solid #2a2c30;display:grid;place-items:center}
+.links{display:flex;gap:30px;align-items:center;font-size:15px;color:#c9ccd0}
+.links a:hover{color:var(--paper)}
+.lang{font-family:var(--ar);font-size:15px}
+
+/* buttons */
+.store{display:inline-flex;align-items:center;gap:12px;background:var(--paper);color:#000;border-radius:14px;padding:12px 22px 12px 18px;transition:transform .15s}
+.store:hover{transform:translateY(-2px)}
+.store small{display:block;font-size:11px;line-height:1.1;letter-spacing:.01em}
+.store b{display:block;font:600 20px/1.1 var(--display);letter-spacing:-.02em}
+.store.ghost{background:transparent;color:var(--mute);border:1px solid var(--line);cursor:default}
+.store.ghost:hover{transform:none}
+.nav-cta{background:var(--paper);color:#000;border-radius:999px;padding:8px 16px;font-weight:600;font-size:14px}
+
+/* hero */
+.hero{position:relative;padding:96px 0 40px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(64px,10.5vw,148px)}
+.hero h1 span{display:block}
+.hero h1 .g{color:var(--gold)}
+.ar-line{font:300 clamp(26px,3vw,40px)/1.3 var(--ar);color:#c9ccd0;margin-top:26px;direction:rtl;text-align:left}
+.lede{max-width:520px;color:#b9bcc0;font-size:19px;margin-top:22px}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.facts{display:flex;gap:44px;margin-top:56px;padding-top:28px;border-top:1px solid var(--line);max-width:560px}
+.facts b{display:block;font:700 26px var(--display);letter-spacing:-.02em}
+.facts span{color:var(--mute);font-size:14px}
+
+/* phone */
+.phone{justify-self:center;width:330px;aspect-ratio:9/19.3;border-radius:52px;background:#050506;border:1px solid #2b2d31;box-shadow:0 0 0 10px #0c0d0f,0 0 0 11px #26282c,0 60px 120px -30px rgba(214,180,106,.25);padding:20px 18px;position:relative;transform:rotate(-3deg)}
+.phone:before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:96px;height:28px;border-radius:20px;background:#000}
+.scr{height:100%;display:flex;flex-direction:column;gap:12px;padding-top:30px}
+.scr .top{display:flex;justify-content:space-between;align-items:center}
+.scr .hi{font:700 22px var(--display);letter-spacing:-.02em}
+.flame{font:600 14px var(--display);background:#17181b;border-radius:999px;padding:5px 11px;color:var(--gold-hi)}
+.ringbox{background:#0d0e10;border:1px solid #1b1d20;border-radius:26px;padding:18px;display:flex;align-items:center;gap:16px}
+.ring{width:118px;height:118px;position:relative;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring .arc{stroke-dasharray:327;stroke-dashoffset:327;animation:fill 1.8s cubic-bezier(.2,.8,.2,1) .4s forwards}
+@keyframes fill{to{stroke-dashoffset:110}}
+.ring .n{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.ring .n b{font:700 28px var(--display);letter-spacing:-.03em}
+.ring .n i{font-style:normal;font-size:11px;color:var(--mute)}
+.macros{display:grid;gap:9px;flex:1;font-size:12px;color:var(--mute)}
+.macros div{display:flex;justify-content:space-between}
+.macros em{font-style:normal;color:var(--paper);font-weight:600}
+.bar{height:4px;background:#1d1f22;border-radius:4px;margin-top:4px}
+.bar i{display:block;height:100%;border-radius:4px;background:var(--paper)}
+.meal{display:flex;justify-content:space-between;align-items:center;background:#0d0e10;border:1px solid #1b1d20;border-radius:18px;padding:12px 14px;font-size:13px}
+.meal b{font-weight:600}
+.meal span{color:var(--mute)}
+.steps{background:#0d0e10;border:1px solid #1b1d20;border-radius:18px;padding:12px 14px;font-size:12px;color:var(--mute)}
+.steps b{color:var(--paper);font-weight:600}
+
+/* menu section */
+section{padding:130px 0}
+.kicker{color:var(--gold);font:500 15px var(--display);letter-spacing:.01em;margin-bottom:18px}
+.h2{font-size:clamp(44px,6vw,84px)}
+.sub{color:#b9bcc0;font-size:19px;max-width:560px;margin-top:22px}
+.menu{margin-top:70px;display:grid;grid-template-columns:1fr 1fr;column-gap:80px;border-top:1px solid var(--line)}
+.dish{display:flex;align-items:baseline;gap:14px;padding:22px 0;border-bottom:1px solid var(--line)}
+.dish .nm{font:500 24px var(--display);letter-spacing:-.02em;white-space:nowrap}
+.dish .ar{font:300 18px var(--ar);color:var(--mute);white-space:nowrap}
+.dish .dots{flex:1;border-bottom:1px dotted #3a3d42;transform:translateY(-6px)}
+.dish .kc{font:500 22px var(--display);color:var(--gold-hi);white-space:nowrap}
+.dish .kc small{font-size:13px;color:var(--mute);margin-left:4px}
+.menu-note{color:var(--mute);font-size:15px;margin-top:26px}
+
+/* chapters */
+.chap{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center;padding:90px 0;border-top:1px solid var(--line)}
+.chap:nth-child(even) .txt{order:2}
+.chap h3{font:700 clamp(34px,4.2vw,56px)/1 var(--display);letter-spacing:-.03em}
+.chap p{color:#b9bcc0;margin-top:20px;max-width:460px;font-size:18px}
+.vig{background:var(--raise);border:1px solid var(--line);border-radius:30px;padding:30px;min-height:300px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.row{display:flex;justify-content:space-between;align-items:center;background:#15161a;border-radius:16px;padding:14px 18px;font-size:15px}
+.row span{color:var(--mute)}
+.row .ok{color:var(--gold-hi);font-weight:600}
+.total{display:flex;justify-content:space-between;font:700 22px var(--display);padding:8px 4px 0;letter-spacing:-.02em}
+.pb{margin-top:6px;border:1px solid rgba(214,180,106,.45);color:var(--gold-hi);border-radius:16px;padding:14px 18px;font-weight:600}
+.streak{display:flex;align-items:baseline;gap:16px}
+.streak b{font:700 120px/.9 var(--display);letter-spacing:-.05em}
+.streak span{color:var(--mute)}
+.pair{display:flex;gap:10px;flex-wrap:wrap}
+.pair div{flex:1;min-width:120px;background:#15161a;border-radius:16px;padding:14px 16px;font-size:14px}
+.pair b{display:block;font:700 26px var(--display);letter-spacing:-.02em}
+.stories{display:flex;gap:14px;justify-content:center}
+.story{width:118px;aspect-ratio:9/16;border-radius:18px;background:#15161a;border:1px solid #24262a;padding:12px;display:flex;flex-direction:column;justify-content:flex-end;font-size:12px;color:var(--mute)}
+.story b{color:var(--paper);font:700 18px var(--display);letter-spacing:-.02em}
+.story.gold{border-color:rgba(214,180,106,.6);background:linear-gradient(160deg,#1a1710,#0d0c09)}
+.story.gold b{color:var(--gold-hi)}
+
+/* premium */
+.prem{border-top:1px solid var(--line)}
+.prem .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:start}
+.soon{display:inline-block;border:1px solid rgba(214,180,106,.5);color:var(--gold-hi);border-radius:999px;padding:6px 14px;font-size:14px;margin-top:28px}
+.plist{border-top:1px solid var(--line)}
+.plist div{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+.plist b{font:500 20px var(--display);letter-spacing:-.01em}
+.plist span{color:#b9bcc0;font-size:16px}
+
+/* social + final */
+.social{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.soc{border:1px solid var(--line);border-radius:999px;padding:12px 20px;font-weight:500}
+.soc:hover{border-color:var(--paper)}
+.final{text-align:center;border-top:1px solid var(--line);padding:150px 0}
+.final .h2{font-size:clamp(56px,9vw,132px)}
+.final .h2 span{display:block}
+.final .ctas{justify-content:center}
+footer{border-top:1px solid var(--line);padding:40px 0 60px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer nav{all:unset;display:flex;gap:22px;flex-wrap:wrap}
+footer a:hover{color:var(--paper)}
+
+.lang{background:none;border:0;color:#c9ccd0;cursor:pointer;font:400 15px var(--ar)}
+.lang:hover{color:var(--paper)}
+.ig{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:34px;max-width:720px}
+.ig a{aspect-ratio:1;background:#15161a center/cover;border-radius:14px}
+[dir=rtl] body{font-family:var(--ar)}
+[dir=rtl] .d,[dir=rtl] .chap h3,[dir=rtl] .plist b,[dir=rtl] .dish .nm,[dir=rtl] .facts b,[dir=rtl] .store b{font-family:var(--ar);letter-spacing:0}
+[dir=rtl] .d{line-height:1.15}
+[dir=rtl] .phone{transform:rotate(3deg);direction:ltr}
+@media (max-width:900px){
+ .hero .wrap,.chap,.prem .wrap,.menu{grid-template-columns:minmax(0,1fr)}
+ .hero h1{font-size:clamp(52px,15vw,96px)}
+ .wrap{padding:0 22px}
+ .facts b{font-size:21px}
+ .chap:nth-child(even) .txt{order:0}
+ .chap{gap:40px;padding:70px 0}
+ .phone{width:280px;margin-top:30px}
+ .links a:not(.nav-cta){display:none}
+ section{padding:90px 0}
+ .facts{gap:28px}
+ .plist div{grid-template-columns:1fr;gap:6px}
+ .dish .ar{display:none}
+}
+@media (prefers-reduced-motion:reduce){.ring .arc{animation:none;stroke-dashoffset:110}.store{transition:none}}
+</style>
 </head>
 <body>
 
-<header class="nav" id="nav">
-  <div class="wrap">
-    <a class="logo" href="/"><img src="/logo.png" alt="" width="34" height="34"><span>Habibi Gains</span></a>
-    <nav class="links">
-      <a class="hide" href="/#features" data-en="Features" data-ar="المميزات">Features</a>
-      <a class="hide" href="/#premium" data-en="Premium" data-ar="بريميوم">Premium</a>
-      <a class="hide" href="/support.html" data-en="Support" data-ar="الدعم">Support</a>
-      <button class="pill" id="lang" type="button" aria-label="Switch language">العربية</button>
-      <a class="get hide" href="/#top" data-en="Get notified" data-ar="بلغني">Get notified</a>
-    </nav>
+<nav id="nav" aria-label="Main">
+ <div class="wrap">
+  <a class="brand" href="/"><span class="mark"><svg width="22" height="12" viewBox="0 0 44 24" fill="#F5F5F2"><rect x="0" y="6" width="5" height="12" rx="2.5"/><rect x="8" y="1" width="8" height="22" rx="4"/><rect x="28" y="1" width="8" height="22" rx="4"/><rect x="39" y="6" width="5" height="12" rx="2.5"/><path d="M16 10c4 4 8 4 12 0v5c-4 4-8 4-12 0z"/></svg></span>Habibi Gains</a>
+  <div class="links">
+   <a href="#food" data-en="Food" data-ar="الأكل">Food</a><a href="#friends" data-en="Friends" data-ar="الربع">Friends</a><a href="#premium" data-en="Premium" data-ar="بريميوم">Premium</a>
+   <button id="lang" class="lang" type="button">العربية</button>
+   <a class="nav-cta" href="/download" data-en="Download" data-ar="حمّل التطبيق">Download</a>
   </div>
+ </div>
+</nav>
+
+<header class="hero">
+ <div class="wrap">
+  <div>
+   <h1 class="d"><span data-en="Count the" data-ar="احسب">Count the</span><span data-en="machboos." data-ar="المچبوس.">machboos.</span><span class="g" data-en="Keep the gains." data-ar="وخلّك على الجيم.">Keep the gains.</span></h1>
+   <p class="ar-line" lang="ar" data-lang="en">احسب المچبوس. وخلّك على الجيم.</p>
+   <p class="lede" data-en="The calorie and gym tracker made for how the Gulf eats, with friends who keep you going. Free on iPhone, in Arabic and English." data-ar="تطبيق السعرات والجيم المصمم على طريقة أكل الخليج، مع ربع يشجعونك. مجاني على الآيفون، بالعربي والإنجليزي.">The calorie and gym tracker made for how the Gulf eats, with friends who keep you going. Free on iPhone, in Arabic and English.</p>
+   <div class="ctas">
+    <a class="store" href="/download" aria-label="Download Habibi Gains on the App Store">
+     <svg width="26" height="26" viewBox="0 0 24 24" fill="#000" aria-hidden="true"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.77-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.27-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.39 0 1.78.74 3 .72 1.24-.02 2.02-1.12 2.78-2.23.88-1.28 1.24-2.52 1.26-2.58-.03-.01-2.4-.92-2.42-3.68zM14.08 5.83c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.06-.52 2.69-1.27z"/></svg>
+     <span><small data-en="Download on the" data-ar="حمّله من">Download on the</small><b>App Store</b></span>
+    </a>
+    <span class="store ghost" aria-label="Google Play, coming soon">
+     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.3c-.3.3-.4.7-.4 1.2v17c0 .5.1.9.4 1.2l9.5-9.7L3.6 2.3zm10.6 8.6 2.7-2.8L5.4 1.6c-.3-.2-.7-.2-1-.1l9.8 9.4zm0 2.2-9.8 9.4c.3.1.7.1 1-.1l11.5-6.5-2.7-2.8zm3.9-3.6-2.9 2.5 2.9 2.5 3.3-1.9c.9-.5.9-1.6 0-2.1l-3.3-1z"/></svg>
+     <span><small data-en="Coming soon on" data-ar="قريباً على">Coming soon on</small><b>Google Play</b></span>
+    </span>
+   </div>
+   <div class="facts">
+    <div><b data-en="Free" data-ar="مجاني">Free</b><span data-en="the whole app" data-ar="التطبيق كامل">the whole app</span></div>
+    <div><b>عربي + EN</b><span data-en="both built in" data-ar="الاثنين موجودين">both built in</span></div>
+    <div><b data-en="Gulf food" data-ar="أكل الخليج">Gulf food</b><span data-en="already in" data-ar="موجود من البداية">already in</span></div>
+   </div>
+  </div>
+
+  <div class="phone" aria-hidden="true">
+   <div class="scr">
+    <div class="top"><span class="hi">Hi Ahmad</span><span class="flame">🔥 21</span></div>
+    <div class="ringbox">
+     <div class="ring"><svg width="118" height="118" viewBox="0 0 118 118"><circle cx="59" cy="59" r="52" fill="none" stroke="#1d1f22" stroke-width="10"/><circle class="arc" cx="59" cy="59" r="52" fill="none" stroke="#D6B46A" stroke-width="10" stroke-linecap="round"/></svg><div class="n"><b>640</b><i>kcal left</i></div></div>
+     <div class="macros">
+      <div>Protein <em>128g</em></div><div class="bar"><i style="width:72%"></i></div>
+      <div>Carbs <em>190g</em></div><div class="bar"><i style="width:58%"></i></div>
+      <div>Fat <em>54g</em></div><div class="bar"><i style="width:44%"></i></div>
+     </div>
+    </div>
+    <div class="meal"><b>Breakfast</b><span>Balaleet · 420</span></div>
+    <div class="meal"><b>Lunch</b><span>Chicken machboos · 780</span></div>
+    <div class="meal"><b>Snack</b><span>Karak · 140</span></div>
+    <div class="steps">♥ Steps from Apple Health<br><b>8,412</b> / 10,000</div>
+   </div>
+  </div>
+ </div>
 </header>
 
-<main id="top">
-<section class="hero">
-  <div class="wrap">
-    <div>
-      <h1 class="x">
-        <span class="in d1" data-en="Count the" data-ar="احسب">Count the</span>
-        <span class="in d2" data-en="machboos." data-ar="المجبوس.">machboos.</span>
-        <span class="in d3 dim" data-en="Keep the gains." data-ar="وخلّك على الجيم.">Keep the gains.</span>
-      </h1>
-      <p class="lead in d4" data-en="The calorie and gym tracker made for how the Gulf eats, with friends who keep you going." data-ar="تطبيق السعرات والجيم المصمم على أكل الخليج، ومع ربعك اللي يشجعونك.">The calorie and gym tracker made for how the Gulf eats, with friends who keep you going.</p>
-      <div class="cta in d4">
-        <span class="btn play soon" aria-label="App Store, coming soon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.18 1.78-3.23 1.86-3.28-1.02-1.49-2.6-1.69-3.16-1.71-1.34-.14-2.62.79-3.3.79-.69 0-1.73-.77-2.85-.75-1.46.02-2.81.85-3.56 2.16-1.53 2.65-.39 6.56 1.09 8.71.73 1.05 1.59 2.22 2.71 2.18 1.09-.04 1.5-.7 2.82-.7 1.31 0 1.69.7 2.84.68 1.17-.02 1.910-1.06 2.62-2.12.83-1.21 1.17-2.39 1.19-2.45-.03-.01-2.27-.87-2.29-3.46zM14.21 6.2c.6-.73 1-1.73.89-2.74-.86.04-1.91.58-2.53 1.3-.55.64-1.04 1.67-.91 2.65.96.07 1.95-.49 2.55-1.21z"/></svg>
-          <span><small data-en="Coming soon on the" data-ar="قريباً على">Coming soon on the</small>App Store</span>
-        </span>
-        <span class="btn play" aria-label="Google Play, coming soon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.3c-.3.3-.4.7-.4 1.2v17c0 .5.1.9.4 1.2l9.5-9.7L3.6 2.3zm10.6 8.6 2.7-2.8L5.4 1.6c-.3-.2-.7-.2-1-.1l9.8 9.4zm0 2.2-9.8 9.4c.3.1.7.1 1-.1l11.5-6.5-2.7-2.8zm3.9-3.6-2.9 2.5 2.9 2.5 3.3-1.9c.9-.5.9-1.6 0-2.1l-3.3-1z"/></svg>
-          <span><small data-en="Coming soon on" data-ar="قريباً على">Coming soon on</small>Google Play</span>
-        </span>
-      </div>
-      <form class="wl in d4" onsubmit="return hgJoin(event,this)">
-        <input name="nm" type="text" required maxlength="80" data-en-ph="Your name" data-ar-ph="اسمك" placeholder="Your name" autocomplete="given-name">
-        <input name="em" type="email" required data-en-ph="Your email" data-ar-ph="إيميلك" placeholder="Your email" autocomplete="email">
-        <button type="submit" data-en="Tell me at launch" data-ar="بلغني عند الإطلاق">Tell me at launch</button>
-        <p class="wl-note" role="status"></p>
-      </form>
-      <div class="proof in d4">
-        <div><b data-en="Free" data-ar="مجاني">Free</b><span data-en="the whole app" data-ar="التطبيق كامل">the whole app</span></div>
-        <div><b data-en="Arabic + English" data-ar="عربي + إنجليزي">Arabic + English</b><span data-en="both built in" data-ar="باللغتين">both built in</span></div>
-        <div><b data-en="Gulf food" data-ar="أكل خليجي">Gulf food</b><span data-en="already in" data-ar="موجود">already in</span></div>
-      </div>
-    </div>
-    <div class="phone-col in d5" aria-hidden="true">
-      <div class="phone"><div class="screen"><div class="notch"></div>
-        <div class="s-top"><div><span data-en="Today" data-ar="اليوم">Today</span><br><b data-en="Hi Ahmad" data-ar="هلا أحمد">Hi Ahmad</b></div><div class="flame">🔥 21</div></div>
-        <div class="ring">
-          <svg width="200" height="200" viewBox="0 0 200 200"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F5F5F2"/><stop offset="1" stop-color="#D6B46A"/></linearGradient></defs><circle cx="100" cy="100" r="86" fill="none" stroke="#1B1E22" stroke-width="14"/><circle class="arc" cx="100" cy="100" r="86" fill="none" stroke="url(#g)" stroke-width="14" stroke-linecap="round"/></svg>
-          <div class="num"><div><b>640</b><small data-en="kcal left" data-ar="سعرة باقية">kcal left</small></div></div>
-        </div>
-        <div class="macros">
-          <div><b style="color:#FF7A59">128g</b><span data-en="Protein" data-ar="بروتين">Protein</span></div>
-          <div><b style="color:#5CC8FF">190g</b><span data-en="Carbs" data-ar="كارب">Carbs</span></div>
-          <div><b style="color:#F5C451">54g</b><span data-en="Fat" data-ar="دهون">Fat</span></div>
-        </div>
-        <div class="meal"><div data-en="Breakfast" data-ar="الفطور">Breakfast</div><span>420</span></div>
-        <div class="meal"><div data-en="Lunch, machboos" data-ar="الغدا، مجبوس">Lunch, machboos</div><span>780</span></div>
-        <div class="meal"><div data-en="Karak" data-ar="كرك">Karak</div><span>140</span></div>
-      </div></div>
-    </div>
+<section id="food">
+ <div class="wrap">
+  <p class="kicker" data-en="Built for the food you actually eat" data-ar="مصمم للأكل اللي تاكله فعلاً">Built for the food you actually eat</p>
+  <h2 class="h2 d" data-en="Most trackers don't know what harees is." data-ar="أغلب التطبيقات ما تعرف شو الهريس.">Most trackers don't know what harees is.</h2>
+  <p class="sub" data-en="Habibi Gains does. Gulf dishes are ready to log in seconds, next to millions of packaged foods and a barcode scanner." data-ar="Habibi Gains يعرفه. أكلات الخليج جاهزة تسجلها بثواني، مع ملايين المنتجات وماسح الباركود.">Habibi Gains does. Gulf dishes are ready to log in seconds, next to millions of packaged foods and a barcode scanner.</p>
+  <div class="menu">
+   <div>
+    <div class="dish"><span class="nm" data-en="Chicken machboos" data-ar="مچبوس دجاج">Chicken machboos</span><span class="ar" lang="ar" data-lang="en">مچبوس دجاج</span><span class="dots"></span><span class="kc">780<small data-en="kcal" data-ar="سعرة">kcal</small></span></div>
+    <div class="dish"><span class="nm" data-en="Shawarma" data-ar="شاورما">Shawarma</span><span class="ar" lang="ar" data-lang="en">شاورما</span><span class="dots"></span><span class="kc">460<small data-en="kcal" data-ar="سعرة">kcal</small></span></div>
+    <div class="dish"><span class="nm" data-en="Harees" data-ar="هريس">Harees</span><span class="ar" lang="ar" data-lang="en">هريس</span><span class="dots"></span><span class="kc">350<small data-en="kcal" data-ar="سعرة">kcal</small></span></div>
+    <div class="dish"><span class="nm" data-en="Mandi" data-ar="مندي">Mandi</span><span class="ar" lang="ar" data-lang="en">مندي</span><span class="dots"></span><span class="kc">520<small data-en="kcal" data-ar="سعرة">kcal</small></span></div>
+   </div>
+   <div>
+    <div class="dish"><span class="nm" data-en="Karak" data-ar="كرك">Karak</span><span class="ar" lang="ar" data-lang="en">كرك</span><span class="dots"></span><span class="kc">140<small data-en="kcal" data-ar="سعرة">kcal</small></span></div>
+    <div class="dish"><span class="nm" data-en="Luqaimat" data-ar="لقيمات">Luqaimat</span><span class="ar" lang="ar" data-lang="en">لقيمات</span><span class="dots"></span><span class="kc">310<small data-en="kcal" data-ar="سعرة">kcal</small></span></div>
+    <div class="dish"><span class="nm" data-en="Balaleet" data-ar="بلاليط">Balaleet</span><span class="ar" lang="ar" data-lang="en">بلاليط</span><span class="dots"></span><span class="kc">290<small data-en="kcal" data-ar="سعرة">kcal</small></span></div>
+    <div class="dish"><span class="nm" data-en="Chebab" data-ar="چباب">Chebab</span><span class="ar" lang="ar" data-lang="en">چباب</span><span class="dots"></span><span class="kc">230<small data-en="kcal" data-ar="سعرة">kcal</small></span></div>
+   </div>
   </div>
+  <p class="menu-note" data-en="Typical home portions. Your recent and favourite foods always stay on top." data-ar="حصص بيتية عادية. أكلاتك الأخيرة والمفضلة دايماً فوق.">Typical home portions. Your recent and favourite foods always stay on top.</p>
+ </div>
 </section>
 
-<div class="strip" aria-hidden="true"><div class="track">
-  <span><b>780</b><span data-en="Chicken machboos" data-ar="مجبوس دجاج">Chicken machboos</span></span><span><b>140</b><span data-en="Karak" data-ar="كرك">Karak</span></span><span><b>460</b><span data-en="Shawarma" data-ar="شاورما">Shawarma</span></span><span><b>310</b><span data-en="Luqaimat" data-ar="لقيمات">Luqaimat</span></span><span><b>350</b><span data-en="Harees" data-ar="هريس">Harees</span></span><span><b>290</b><span data-en="Balaleet" data-ar="بلاليط">Balaleet</span></span><span><b>520</b><span data-en="Mandi" data-ar="مندي">Mandi</span></span><span><b>230</b><span data-en="Chebab" data-ar="چباب">Chebab</span></span>
-  <span><b>780</b><span data-en="Chicken machboos" data-ar="مجبوس دجاج">Chicken machboos</span></span><span><b>140</b><span data-en="Karak" data-ar="كرك">Karak</span></span><span><b>460</b><span data-en="Shawarma" data-ar="شاورما">Shawarma</span></span><span><b>310</b><span data-en="Luqaimat" data-ar="لقيمات">Luqaimat</span></span><span><b>350</b><span data-en="Harees" data-ar="هريس">Harees</span></span><span><b>290</b><span data-en="Balaleet" data-ar="بلاليط">Balaleet</span></span><span><b>520</b><span data-en="Mandi" data-ar="مندي">Mandi</span></span><span><b>230</b><span data-en="Chebab" data-ar="چباب">Chebab</span></span>
-</div></div>
-
-<section class="sec" id="features">
-  <div class="wrap">
-    <h2 class="h2 x" data-en="Built for the food you actually eat." data-ar="مبني على الأكل اللي فعلاً تاكله.">Built for the food you actually eat.</h2>
-    <p class="sub" data-en="Most trackers don't know what harees is. Habibi Gains does, and it fits around your week, your gym and your friends." data-ar="أغلب التطبيقات ما تعرف شنو الهريس. حبيبي قينز يعرف، ويمشي مع أسبوعك وجيمك وربعك.">Most trackers don't know what harees is. Habibi Gains does, and it fits around your week, your gym and your friends.</p>
-
-    <div class="rows">
-      <div class="row">
-        <div class="tile">
-          <h3 data-en="Log food in seconds" data-ar="سجّل أكلك بثواني">Log food in seconds</h3>
-          <p data-en="Gulf dishes, packaged food, barcode and label scanning. Your recent and favourite foods stay on top." data-ar="أكلات خليجية، منتجات، ومسح الباركود والملصق. أكلاتك الأخيرة والمفضلة دايماً فوق.">Gulf dishes, packaged food, barcode and label scanning. Your recent and favourite foods stay on top.</p>
-          <div class="art"><div class="search">
-            <div class="q"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span data-en="mach" data-ar="مجب">mach</span></div>
-            <div class="r"><div><strong data-en="Chicken machboos" data-ar="مجبوس دجاج">Chicken machboos</strong><span data-en="1 plate, 780 kcal" data-ar="صحن، ٧٨٠ سعرة">1 plate, 780 kcal</span></div><div class="add">+</div></div>
-            <div class="r"><div><strong data-en="Lamb machboos" data-ar="مجبوس لحم">Lamb machboos</strong><span data-en="1 plate, 910 kcal" data-ar="صحن، ٩١٠ سعرة">1 plate, 910 kcal</span></div><div class="add">+</div></div>
-          </div></div>
-        </div>
-        <div class="tile white">
-          <h3 data-en="Cheat meals with the boys" data-ar="وجبة مفتوحة مع الشباب">Cheat meals with the boys</h3>
-          <p data-en="Plan the night, invite friends with a link. Everyone keeps their own list, and the weekly calorie bank keeps one big night from ruining the week." data-ar="خطط للطلعة وادعِ ربعك برابط. كل واحد له قائمته، ورصيد السعرات الأسبوعي يخلي ليلة وحدة ما تخرب أسبوعك.">Plan the night, invite friends with a link. Everyone keeps their own list, and the weekly calorie bank keeps one big night from ruining the week.</p>
-          <div class="art"><div class="rcpt">
-            <div class="t">Habibi Gains</div><div class="d" data-en="Thursday night" data-ar="ليلة الخميس">Thursday night</div>
-            <div class="l"><span data-en="Machboos" data-ar="مجبوس">Machboos</span><span>780</span></div>
-            <div class="l"><span data-en="Shawarma, 2" data-ar="شاورما ×٢">Shawarma, 2</span><span>920</span></div>
-            <div class="l"><span data-en="Luqaimat" data-ar="لقيمات">Luqaimat</span><span>310</span></div>
-            <div class="tt"><span data-en="Total" data-ar="المجموع">Total</span><span>2,010</span></div>
-          </div></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="tile white">
-          <h3 data-en="Train together" data-ar="تمرّن مع ربعك">Train together</h3>
-          <p data-en="Plan a workout by muscle group, invite your gym partner and track every set. We celebrate every personal best." data-ar="خطط تمرينك حسب العضلة، ادعِ شريكك وسجّل كل جولة. ونحتفل معك بكل رقم جديد.">Plan a workout by muscle group, invite your gym partner and track every set. We celebrate every personal best.</p>
-          <div class="art">
-            <div class="sets">
-              <div class="set"><span class="n">1</span><span>10 reps</span><span>80 kg</span><span class="ok">✓</span></div>
-              <div class="set"><span class="n">2</span><span>8 reps</span><span>90 kg</span><span class="ok">✓</span></div>
-              <div class="set"><span class="n">3</span><span>6 reps</span><span>100 kg</span><span class="ok">✓</span></div>
-            </div>
-            <span class="pr" data-en="New personal best, bench press 100 kg" data-ar="رقم جديد، بنش ١٠٠ كغ">New personal best, bench press 100 kg</span>
-          </div>
-        </div>
-        <div class="tile">
-          <h3 data-en="Streaks that keep you honest" data-ar="ستريك يخليك ملتزم">Streaks that keep you honest</h3>
-          <p data-en="Your own streak and a shared one with each friend. Send a nudge when someone goes quiet." data-ar="ستريكك وستريك مشترك مع كل واحد من ربعك. أرسل تنبيه لما أحد يختفي.">Your own streak and a shared one with each friend. Send a nudge when someone goes quiet.</p>
-          <div class="art">
-            <div class="streak"><div class="big">21</div><div class="lab" data-en="days in a row" data-ar="يوم ورا بعض">days in a row</div></div>
-            <div class="days"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="g"></i><i class="on"></i><i></i></div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="tile wide">
-          <div>
-            <h3 data-en="Stories worth posting" data-ar="ستوريات تستاهل تنشرها">Stories worth posting</h3>
-            <p data-en="Turn your day, your workout or your cheat meal into an animated story or sticker for Instagram and TikTok." data-ar="حوّل يومك أو تمرينك أو وجبتك المفتوحة لستوري أو ستيكر متحرك لإنستقرام وتيك توك.">Turn your day, your workout or your cheat meal into an animated story or sticker for Instagram and TikTok.</p>
-          </div>
-          <div class="stories" aria-hidden="true">
-            <div class="story a"><span data-en="My day" data-ar="يومي">My day</span><small>1,860 kcal</small></div>
-            <div class="story b"><span data-en="Leg day" data-ar="يوم الرجل">Leg day</span><small>12,400 kg</small></div>
-            <div class="story c"><span data-en="Gym card" data-ar="بطاقة الجيم">Gym card</span><small>Premium</small></div>
-          </div>
-        </div>
-      </div>
-    </div>
+<section id="friends" style="padding-top:0">
+ <div class="wrap">
+  <div class="chap">
+   <div class="txt"><p class="kicker" data-en="Cheat meals with the boys" data-ar="وجبات مفتوحة مع الربع">Cheat meals with the boys</p><h3 data-en="One big night won't ruin the week." data-ar="ليلة وحدة ما تخرب أسبوعك.">One big night won't ruin the week.</h3><p data-en="Plan the night and invite friends with a link. Everyone keeps their own list, and the weekly calorie bank absorbs the big night." data-ar="خطط الليلة وادعُ ربعك برابط. كل واحد له قائمته، وبنك السعرات الأسبوعي يمتص الليلة الكبيرة.">Plan the night and invite friends with a link. Everyone keeps their own list, and the weekly calorie bank absorbs the big night.</p></div>
+   <div class="vig" aria-hidden="true">
+    <div class="row"><b data-en="Machboos" data-ar="مچبوس" style="font-weight:400">Machboos</b> <span>780</span></div>
+    <div class="row"><b data-en="Shawarma, 2" data-ar="شاورما ×٢" style="font-weight:400">Shawarma, 2</b> <span>920</span></div>
+    <div class="row"><b data-en="Luqaimat" data-ar="لقيمات" style="font-weight:400">Luqaimat</b> <span>310</span></div>
+    <div class="total"><span data-en="Thursday night" data-ar="ليلة الخميس">Thursday night</span><span>2,010</span></div>
+   </div>
   </div>
+  <div class="chap">
+   <div class="txt"><p class="kicker" data-en="Train together" data-ar="تمرّن مع ربعك">Train together</p><h3 data-en="Every set, every PR." data-ar="كل جولة، وكل رقم قياسي.">Every set, every PR.</h3><p data-en="Plan a workout by muscle group, invite your gym partner and track each set with rest timers. Your deadlift, bench and squat sit on your profile." data-ar="خطط تمرينك حسب العضلة، ادعُ شريكك في الجيم وسجّل كل جولة مع مؤقت الراحة. الديدلفت والبنش والسكوات على ملفك.">Plan a workout by muscle group, invite your gym partner and track each set with rest timers. Your deadlift, bench and squat sit on your profile.</p></div>
+   <div class="vig" aria-hidden="true">
+    <div class="row"><b data-en="Set 1" data-ar="الجولة ١" style="font-weight:400">Set 1</b> <span>10 × 80 kg</span><b class="ok">✓</b></div>
+    <div class="row"><b data-en="Set 2" data-ar="الجولة ٢" style="font-weight:400">Set 2</b> <span>8 × 90 kg</span><b class="ok">✓</b></div>
+    <div class="row"><b data-en="Set 3" data-ar="الجولة ٣" style="font-weight:400">Set 3</b> <span>6 × 100 kg</span><b class="ok">✓</b></div>
+    <div class="pb" data-en="New personal best: bench press 100 kg" data-ar="رقم قياسي جديد: بنش برس ١٠٠ كجم">New personal best: bench press 100 kg</div>
+   </div>
+  </div>
+  <div class="chap">
+   <div class="txt"><p class="kicker" data-en="Streaks" data-ar="السلسلة">Streaks</p><h3 data-en="Your streak, and one with each friend." data-ar="سلسلتك، وسلسلة مع كل صاحب.">Your streak, and one with each friend.</h3><p data-en="Log every day to keep yours alive. Build a shared streak with each friend and nudge them when they go quiet." data-ar="سجّل كل يوم عشان تحافظ عليها. ابنِ سلسلة مشتركة مع كل صاحب ونكزه إذا سكت.">Log every day to keep yours alive. Build a shared streak with each friend and nudge them when they go quiet.</p></div>
+   <div class="vig" aria-hidden="true">
+    <div class="streak"><b>21</b><span data-en="days in a row" data-ar="يوم ورا يوم">days in a row</span></div>
+    <div class="pair"><div><b>12</b>with @noubani</div><div><b>7</b>with @saif</div></div>
+   </div>
+  </div>
+  <div class="chap">
+   <div class="txt"><p class="kicker" data-en="Stories" data-ar="الستوريات">Stories</p><h3 data-en="Post the gains." data-ar="انشر إنجازك.">Post the gains.</h3><p data-en="Turn your day, your workout or your cheat meal into an animated story or sticker for Instagram and TikTok." data-ar="حوّل يومك أو تمرينك أو وجبتك المفتوحة لستوري متحركة أو ستيكر لإنستغرام وتيك توك.">Turn your day, your workout or your cheat meal into an animated story or sticker for Instagram and TikTok.</p></div>
+   <div class="vig" aria-hidden="true">
+    <div class="stories"><div class="story"><span data-en="My day" data-ar="يومي">My day</span><b>1,860 kcal</b></div><div class="story gold"><span data-en="Leg day" data-ar="يوم الرجل">Leg day</span><b>12,400 kg</b></div><div class="story"><span data-en="Cheat meal" data-ar="وجبة مفتوحة">Cheat meal</span><b data-en="Thursday" data-ar="الخميس">Thursday</b></div></div>
+   </div>
+  </div>
+ </div>
 </section>
 
-<section class="sec" id="premium">
-  <div class="wrap">
-    <h2 class="h2 x" data-en="Premium tells you what to do next." data-ar="بريميوم يقولك وش تسوي بعدين.">Premium tells you what to do next.</h2>
-    <p class="sub" data-en="The whole app is free. Premium adds a coach that plans around your day, your gym and your goal." data-ar="التطبيق كله مجاني. بريميوم يضيف لك مدرب يخطط على يومك وجيمك وهدفك.">The whole app is free. Premium adds a coach that plans around your day, your gym and your goal.</p>
-    <div class="prem-card"><div class="prem-in">
-      <ul class="perks">
-        <li><b data-en="My food plan" data-ar="خطة أكلي">My food plan</b><span data-en="Meal ideas that fit the calories you have left today, from foods you already eat." data-ar="اقتراحات وجبات تناسب السعرات الباقية لك اليوم، من أكل أنت أصلاً تاكله.">Meal ideas that fit the calories you have left today, from foods you already eat.</span></li>
-        <li><b data-en="Training programs" data-ar="برامج تمارين">Training programs</b><span data-en="Pick your gym days and the machines your gym has. Get a program that fits." data-ar="اختر أيام الجيم والأجهزة اللي في جيمك. ونعطيك برنامج يناسبك.">Pick your gym days and the machines your gym has. Get a program that fits.</span></li>
-        <li><b data-en="Goal date" data-ar="موعد هدفك">Goal date</b><span data-en="See the day you'll reach your goal weight at your current pace." data-ar="شوف اليوم اللي بتوصل فيه لوزنك المطلوب على نفس المستوى.">See the day you'll reach your goal weight at your current pace.</span></li>
-        <li><b data-en="Insights and weekly report" data-ar="تحليلات وتقرير أسبوعي">Insights and weekly report</b><span data-en="Trends, macros, your best and worst days, and a weekly score." data-ar="الاتجاهات، الماكروز، أحسن وأسوأ أيامك، وتقييم أسبوعي.">Trends, macros, your best and worst days, and a weekly score.</span></li>
-        <li><b data-en="Streak restores" data-ar="استرجاع الستريك">Streak restores</b><span data-en="Two free restores every month when life gets in the way." data-ar="استرجاعين مجانيين كل شهر لما تنشغل.">Two free restores every month when life gets in the way.</span></li>
-        <li><b data-en="Gold gym card" data-ar="بطاقة الجيم الذهبية">Gold gym card</b><span data-en="A gold card and Premium badge on your profile and stories." data-ar="بطاقة ذهبية وشارة بريميوم في بروفايلك وستورياتك.">A gold card and Premium badge on your profile and stories.</span></li>
-      </ul>
-      <div class="price">
-        <div class="free x" data-en="1 week free" data-ar="أسبوع مجاناً">1 week free</div>
-        <div class="then" data-en="Then choose your plan" data-ar="بعدها اختر خطتك">Then choose your plan</div>
-        <div class="plan best"><b data-en="Yearly" data-ar="سنوي">Yearly</b><span data-en="AED 99.99 a year" data-ar="٩٩٫٩٩ درهم بالسنة">AED 99.99 a year</span></div>
-        <div class="plan"><b data-en="Monthly" data-ar="شهري">Monthly</b><span data-en="AED 12.99 a month" data-ar="١٢٫٩٩ درهم بالشهر">AED 12.99 a month</span></div>
-        <p class="note" data-en="Cancel any time in your iPhone settings. Prices show in your local currency in the App Store." data-ar="تقدر تلغي بأي وقت من إعدادات الآيفون. الأسعار تظهر بعملتك في متجر التطبيقات.">Cancel any time in your iPhone settings. Prices show in your local currency in the App Store.</p>
-      </div>
-    </div></div>
+<section id="premium" class="prem">
+ <div class="wrap">
+  <div>
+   <p class="kicker" data-en="Habibi Gains Premium" data-ar="Habibi Gains بريميوم">Habibi Gains Premium</p>
+   <h2 class="h2 d" data-en="A coach that plans around your day." data-ar="مدرب يخطط على يومك.">A coach that plans around your day.</h2>
+   <p class="sub" data-en="The whole app is free. Premium adds a coach for your food, your gym and your goal." data-ar="التطبيق كامل مجاني. بريميوم يضيف مدرب لأكلك وجيمك وهدفك.">The whole app is free. Premium adds a coach for your food, your gym and your goal.</p>
+   <span class="soon" data-en="Coming soon" data-ar="قريباً">Coming soon</span>
   </div>
+  <div class="plist">
+   <div><b data-en="My food plan" data-ar="خطة أكلي">My food plan</b><span data-en="Meal ideas that fit the calories you have left today, from foods you already eat." data-ar="أفكار وجبات تناسب السعرات الباقية لك اليوم، من أكل تاكله أصلاً.">Meal ideas that fit the calories you have left today, from foods you already eat.</span></div>
+   <div><b data-en="Training programs" data-ar="برامج التمرين">Training programs</b><span data-en="Pick your gym days and the machines your gym has, and get a program that fits." data-ar="اختر أيام الجيم والأجهزة اللي في ناديك، وخذ برنامج يناسبك.">Pick your gym days and the machines your gym has, and get a program that fits.</span></div>
+   <div><b data-en="Goal date" data-ar="تاريخ الهدف">Goal date</b><span data-en="See the day you'll reach your goal weight at your current pace." data-ar="شوف اليوم اللي بتوصل فيه لوزنك المستهدف بنفس وتيرتك.">See the day you'll reach your goal weight at your current pace.</span></div>
+   <div><b data-en="Insights" data-ar="التحليلات">Insights</b><span data-en="Trends, macros, your best and worst days, and a weekly report." data-ar="الاتجاهات والماكروز وأفضل وأسوأ أيامك، وتقرير أسبوعي.">Trends, macros, your best and worst days, and a weekly report.</span></div>
+   <div><b data-en="Streak restores" data-ar="استرجاع السلسلة">Streak restores</b><span data-en="Two free restores every month when life gets in the way." data-ar="استرجاعين مجاناً كل شهر لما تنشغل.">Two free restores every month when life gets in the way.</span></div>
+   <div><b data-en="Gold gym card" data-ar="بطاقة الجيم الذهبية">Gold gym card</b><span data-en="A gold card and Premium badge on your profile and stories." data-ar="بطاقة ذهبية وشارة بريميوم على ملفك وستورياتك.">A gold card and Premium badge on your profile and stories.</span></div>
+  </div>
+ </div>
 </section>
 
-<section class="sec tight" id="follow">
-  <div class="wrap">
-    <h2 class="h2 x" data-en="Latest from us." data-ar="آخر شي منّا.">Latest from us.</h2>
-    <div class="soc">
-      <div class="sbox">
-        <div class="shead">
-          <a href="https://www.tiktok.com/@habibigains.app" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 6.7a4.8 4.8 0 0 1-3.8-4.2V2h-3.4v13.4a2.9 2.9 0 1 1-2-2.7V9.2a6.3 6.3 0 1 0 5.4 6.2V8.6a8.2 8.2 0 0 0 3.8 1.1V6.7z"/></svg>@habibigains.app</a>
-          <a class="follow" href="https://www.tiktok.com/@habibigains.app" target="_blank" rel="noopener" data-en="Follow" data-ar="تابع">Follow</a>
-        </div>
-        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@habibigains.app" data-unique-id="habibigains.app" data-embed-type="creator" style="max-width:780px;min-width:288px;margin:0"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@habibigains.app?refer=creator_embed">@habibigains.app</a></section></blockquote>
-      </div>
-      <div class="sbox">
-        <div class="shead">
-          <a href="https://www.instagram.com/habibigains.app/" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@habibigains.app</a>
-          <a class="follow" href="https://www.instagram.com/habibigains.app/" target="_blank" rel="noopener" data-en="Follow" data-ar="تابع">Follow</a>
-        </div>
-        <div class="ig-grid" id="ig-grid" hidden></div>
-        <p class="ig-empty" id="ig-empty" data-en="Our latest posts and reels live on Instagram." data-ar="آخر منشوراتنا وريلزنا على إنستقرام.">Our latest posts and reels live on Instagram.</p>
-      </div>
-    </div>
+<section style="border-top:1px solid var(--line)">
+ <div class="wrap">
+  <p class="kicker" data-en="Follow along" data-ar="تابعنا">Follow along</p>
+  <h2 class="h2 d">@habibigains.app</h2>
+  <p class="sub" data-en="New reels, food breakdowns and gym content every week." data-ar="ريلز جديدة وتحليل أكلات ومحتوى جيم كل أسبوع.">New reels, food breakdowns and gym content every week.</p>
+  <div class="ig" id="ig-grid" hidden></div><span id="ig-empty" hidden></span>
+  <div class="social">
+   <a class="soc" target="_blank" rel="noopener" href="https://www.instagram.com/habibigains.app/">Instagram</a>
+   <a class="soc" target="_blank" rel="noopener" href="https://www.tiktok.com/@habibigains.app">TikTok</a>
   </div>
+ </div>
 </section>
 
 <section class="final">
-  <div class="wrap">
-    <h2 class="h2 x" data-en="Your gains, your way." data-ar="جيمك، على طريقتك.">Your gains, your way.</h2>
-    <p class="sub" style="margin:22px auto 0" data-en="Launching 30 November. Leave your email and we'll tell you the moment it's live." data-ar="ننزل ٣٠ نوفمبر. اترك إيميلك ونبلغك أول ما ينزل.">Launching 30 November. Leave your email and we'll tell you the moment it's live.</p>
-    <form class="wl center-wl" onsubmit="return hgJoin(event,this)">
-        <input name="nm" type="text" required maxlength="80" data-en-ph="Your name" data-ar-ph="اسمك" placeholder="Your name" autocomplete="given-name">
-        <input name="em" type="email" required data-en-ph="Your email" data-ar-ph="إيميلك" placeholder="Your email" autocomplete="email">
-        <button type="submit" data-en="Tell me at launch" data-ar="بلغني عند الإطلاق">Tell me at launch</button>
-        <p class="wl-note" role="status"></p>
-      </form>
-    <div class="cta">
-      <span class="btn play soon"><span><small data-en="Coming soon on the" data-ar="قريباً على">Coming soon on the</small>App Store</span></span>
-      <span class="btn play"><span><small data-en="Coming soon on" data-ar="قريباً على">Coming soon on</small>Google Play</span></span>
-    </div>
+ <div class="wrap">
+  <h2 class="h2 d"><span data-en="Your gains," data-ar="جيمك،">Your gains,</span><span data-en="your way." data-ar="على طريقتك.">your way.</span></h2>
+  <p class="sub" style="margin:26px auto 0" data-en="Free on the App Store. Arabic and English, built for the Gulf." data-ar="مجاني على App Store. بالعربي والإنجليزي، مصمم للخليج.">Free on the App Store. Arabic and English, built for the Gulf.</p>
+  <div class="ctas">
+   <a class="store" href="/download" aria-label="Download Habibi Gains on the App Store">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="#000" aria-hidden="true"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.77-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.27-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.39 0 1.78.74 3 .72 1.24-.02 2.02-1.12 2.78-2.23.88-1.28 1.24-2.52 1.26-2.58-.03-.01-2.4-.92-2.42-3.68zM14.08 5.83c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.06-.52 2.69-1.27z"/></svg>
+    <span><small data-en="Download on the" data-ar="حمّله من">Download on the</small><b>App Store</b></span>
+   </a>
   </div>
+ </div>
 </section>
-</main>
 
 <footer>
-  <div class="wrap">
-    <a class="logo" href="/"><img src="/logo.png" alt="" width="34" height="34"><span>Habibi Gains</span></a>
-    <div class="icons">
-      <a href="https://www.instagram.com/habibigains.app/" target="_blank" rel="noopener" aria-label="Habibi Gains on Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-      <a href="https://www.tiktok.com/@habibigains.app" target="_blank" rel="noopener" aria-label="Habibi Gains on TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 6.7a4.8 4.8 0 0 1-3.8-4.2V2h-3.4v13.4a2.9 2.9 0 1 1-2-2.7V9.2a6.3 6.3 0 1 0 5.4 6.2V8.6a8.2 8.2 0 0 0 3.8 1.1V6.7z"/></svg></a>
-    </div>
-    <div class="legal">
-      <a href="/support.html" data-en="Support" data-ar="الدعم">Support</a>
-      <a href="/privacy" data-en="Privacy" data-ar="الخصوصية">Privacy</a>
-      <a href="/terms" data-en="Terms" data-ar="الشروط">Terms</a>
-      <a href="/delete-account.html" data-en="Delete account" data-ar="حذف الحساب">Delete account</a>
-      <span>© 2026 Habibi Gains</span>
-    </div>
-  </div>
+ <div class="wrap">
+  <span data-en="© 2026 Habibi Gains, Abu Dhabi" data-ar="© 2026 Habibi Gains، أبوظبي">© 2026 Habibi Gains, Abu Dhabi</span>
+  <nav aria-label="Footer"><a href="/privacy" data-en="Privacy" data-ar="الخصوصية">Privacy</a><a href="/terms" data-en="Terms" data-ar="الشروط">Terms</a><a href="/support.html" data-en="Support" data-ar="الدعم">Support</a><a href="/delete-account.html" data-en="Delete account" data-ar="حذف الحساب">Delete account</a><a href="mailto:hello@habibigains.store">hello@habibigains.store</a></nav>
+ </div>
 </footer>
-
 <script src="/site.js"></script>
-<script async src="https://www.tiktok.com/embed.js"></script>
 </body>
 </html>
