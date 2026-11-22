@@ -107,18 +107,31 @@
     var email = h('input', { type: 'email', placeholder: 'you@email.com', autocomplete: 'username' });
     var pass = h('input', { type: 'password', placeholder: 'Password', autocomplete: 'current-password' });
     var go = h('button', { class: 'btn', style: 'width:100%;margin-top:16px', text: 'Sign in' });
-    go.addEventListener('click', safe(async function () {
-      go.textContent = 'Signing in…';
-      var r = await SB.auth.signInWithPassword({ email: email.value.trim().toLowerCase(), password: pass.value });
-      go.textContent = 'Sign in';
-      if (r.error) throw r.error;
-      start();
-    }));
+    var err = h('p', { style: 'display:none;margin-top:12px;color:var(--bad);font-weight:600' });
+    function fail(m) { err.textContent = m; err.style.display = 'block'; go.textContent = 'Sign in'; go.disabled = false; }
+    async function submit() {
+      err.style.display = 'none';
+      if (!email.value.trim() || !pass.value) return fail('Type your email and password first.');
+      go.textContent = 'Signing in…'; go.disabled = true;
+      try {
+        var r = await SB.auth.signInWithPassword({ email: email.value.trim().toLowerCase(), password: pass.value });
+        if (r.error) {
+          var m = String(r.error.message || '');
+          if (/invalid login/i.test(m)) return fail('Wrong email or password. Use the same ones you use in the app. Forgot it? Use "Forgot password" on the app’s sign-in screen.');
+          if (/not confirmed/i.test(m)) return fail('This email isn’t confirmed yet. Confirm it in the app first.');
+          return fail(m || 'Could not sign in. Try again.');
+        }
+        go.textContent = 'Sign in'; go.disabled = false;
+        start().catch(function () { loginView('Signed in, but the page could not load. Refresh and try again.'); });
+      } catch (e) { fail('No connection to the server. Check your internet and try again.'); }
+    }
+    go.addEventListener('click', submit);
+    pass.addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(); });
     app.replaceChildren(h('div', { class: 'fade' }, [
       h('h1', { text: 'Control room', style: 'margin-top:40px' }),
       h('p', { class: 'muted', style: 'margin:8px 0 20px', text: 'Change Habibi Gains live: no app update, no build. Owner only.' }),
       msg ? h('p', { style: 'color:var(--bad);margin-bottom:12px', text: msg }) : null,
-      h('div', { class: 'card' }, [h('label', { text: 'Email' }), email, h('label', { text: 'Password' }), pass, go,
+      h('div', { class: 'card' }, [h('label', { text: 'Email' }), email, h('label', { text: 'Password' }), pass, go, err,
         h('p', { class: 'small faint', style: 'margin-top:12px', text: 'Use the email login of your Habibi Gains account. Signed up with Apple or Google? In the app: Settings › My data and account privacy › Account settings › Private info › Add email login.' })]),
     ]));
   }
@@ -337,11 +350,11 @@
     var s = await SB.auth.getSession();
     if (!s.data.session) return loginView();
     var ok = false; try { ok = await rpc('is_super'); } catch (e) { ok = false; }
-    if (!ok) { await SB.auth.signOut(); return loginView('This account is not the owner.'); }
+    if (!ok) { await SB.auth.signOut(); return loginView('Signed in, but this is not the owner account. Use the account that has Super admin in the app.'); }
     try { STRINGS = await (await fetch('/admin-strings.json', { cache: 'no-store' })).json(); } catch (e) { STRINGS = {}; }
     shell();
   }
-  start().catch(function () { loginView(); });
+  start().catch(function () { loginView('Could not reach the server. Check your internet and refresh.'); });
 })();
 </script>
 </body>
